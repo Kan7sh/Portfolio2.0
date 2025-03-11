@@ -1,11 +1,14 @@
 import { useEffect,useState } from "react";
 import "./App.css";
 import { motion} from "framer-motion";
+import ResizableWindow from "./resizewindow";
 
 
 function App() {
 
 const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+const [isFullScreen, setIsFullScreen] = useState(true);
+const [showButtons, setShowButtons] = useState(false);
 
 const [cursorVariant, setCursorVarient] = useState("defaut"); 
 
@@ -39,11 +42,19 @@ text:{
 const textEnter = () => setCursorVarient("text");
 const textLeave = () => setCursorVarient("default");
 
+
+const handleShrink = () => {
+  setIsFullScreen(isFullScreen => !isFullScreen);
+  setTimeout(() => setShowButtons(true), 500); 
+};
+const handleButtonClick = (side, index) => {
+  console.log(`${side} button ${index + 1} clicked!`);
+};
+
   return (
-    <div className="App">
-     <h1 onMouseEnter={textEnter} onMouseLeave={textLeave} className="title"> Hello World</h1>
-     <motion.div className="cursor" variants={variants} animate = {cursorVariant} />
-    </div>
+   <div>
+    <ResizableWindow />
+   </div>
   );
 }
 

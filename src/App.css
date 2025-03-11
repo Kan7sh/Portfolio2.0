@@ -1,25 +1,148 @@
-*{
-  cursor: none;
-}
-
-.App{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: yellow;
-}
-
-.title{
-  font-size: 10rem;
-}
-
-.cursor{
-  height: 32px;
-  width: 32px;
-  border-radius: 50%;
+/* Parent window (background) */
+.parent-window {
   position: fixed;
   top: 0;
   left: 0;
-  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Important to hide buttons when they're outside */
+}
+
+/* Child window (foreground) */
+.child-window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+  z-index: 10; /* Ensure child window is above buttons */
+}
+
+/* Shrunk child window (50% size, centered) */
+.shrink {
+  width: 50vw;
+  height: 50vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Toggle Button */
+.toggle-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: white;
+  color: blue;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 20; /* Ensure button is clickable */
+}
+
+.toggle-button:hover {
+  background-color: lightgray;
+}
+
+/* Side Button Groups */
+.button-group {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5; /* Below the child window */
+}
+
+/* Left Buttons - Initially positioned outside the screen */
+.left-group {
+  left: -120px; /* Start outside the viewport */
+  transition: left 0.5s ease-in-out;
+}
+
+/* Right Buttons - Initially positioned outside the screen */
+.right-group {
+  right: -120px; /* Start outside the viewport */
+  transition: right 0.5s ease-in-out;
+}
+
+/* Show and animate buttons when child is shrunk */
+.shrink ~ .left-group {
+  left: calc(25vw - 120px); /* Final position */
+}
+
+.shrink ~ .right-group {
+  right: calc(25vw - 120px); /* Final position */
+}
+
+/* Individual Side Buttons */
+.side-button {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: white;
+  color: blue;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.side-button:hover {
+  background-color: lightgray;
+}
+
+/* Staggered animation for individual buttons */
+.left-group .side-button {
+  transform: translateX(-20px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.right-group .side-button {
+  transform: translateX(20px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.shrink ~ .left-group .side-button,
+.shrink ~ .right-group .side-button {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Apply staggered delays to buttons */
+.left-group .side-button:nth-child(1),
+.right-group .side-button:nth-child(1) {
+  transition-delay: 0.3s;
+}
+
+.left-group .side-button:nth-child(2),
+.right-group .side-button:nth-child(2) {
+  transition-delay: 0.4s;
+}
+
+.left-group .side-button:nth-child(3),
+.right-group .side-button:nth-child(3) {
+  transition-delay: 0.5s;
+}
+
+.left-group .side-button:nth-child(4),
+.right-group .side-button:nth-child(4) {
+  transition-delay: 0.6s;
 }
