@@ -14,14 +14,13 @@ const CustomCursor = () => {
     return () => window.removeEventListener("mousemove", moveCursor);
   }, []);
 
-  // Handle hover events
   useEffect(() => {
     const handleHover = (e) => {
       if (e.target.closest(".hover-trigger")) {
-        setCursorSize(80); // Bigger size on hover
+        setCursorSize(80);
         setHovered(true);
       } else {
-        setCursorSize(40); // Default size
+        setCursorSize(40); 
         setHovered(false);
       }
     };
