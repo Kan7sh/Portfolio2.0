@@ -130,8 +130,9 @@
 
 /* Window content container */
 .window-content {
-  width: 80%;
-  max-width: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   text-align: center;
 }
@@ -142,18 +143,10 @@
   top: 20px;
   right: 20px;
   padding: 10px 15px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 5px;
   cursor: pointer;
   z-index: 100;
-  transition: background-color 0.3s ease;
 }
 
-.toggle-frame-button:hover {
-  background-color: #555;
-}
 
 /* Frame navigation items */
 .frame-nav-item {
@@ -319,3 +312,4 @@
   background-color: #f0f0f0;
   transform: scale(1.05);
 }
+

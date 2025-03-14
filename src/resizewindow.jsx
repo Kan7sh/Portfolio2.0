@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import ToggleButton from "./components/ToggleButton";
+import QRComponent from "./components/QRComponent";
 
 export default function PhotoFrameNavigation() {
   const [activeSection, setActiveSection] = useState("Home");
@@ -7,6 +9,9 @@ export default function PhotoFrameNavigation() {
   const [transitioning, setTransitioning] = useState(false);
   const [previousSection, setPreviousSection] = useState(null);
   
+
+  const qrColor = isFrameVisible ? "#000000" : "#ffffff";
+  const email = "kchhabra499@gmail.com";
   // Map sections to colors
   const sectionColors = {
     Home: "blue",
@@ -73,8 +78,8 @@ export default function PhotoFrameNavigation() {
       // After animation delay, change the actual section
       setTimeout(() => {
         setActiveSection(newSection);
-        // Reset transitioning state after new content appears
         setTimeout(() => {
+          setIsFrameVisible(prev => !prev);
           setTransitioning(false);
           setPreviousSection(null);
         }, 500);
@@ -83,7 +88,9 @@ export default function PhotoFrameNavigation() {
   };
 
   const toggleFrame = () => {
-    setIsFrameVisible(prev => !prev);
+    setTimeout(() => {
+      setIsFrameVisible(prev => !prev);
+    }, 300); // Delay of 500ms
   };
 
   const leftNavItems = ["Home", "About", "Projects", "Contact"];
@@ -92,13 +99,9 @@ export default function PhotoFrameNavigation() {
   return (
     <div className="window-container">
       {/* Toggle Frame Button - Always visible */}
-      <button 
-        onClick={toggleFrame} 
-        className="toggle-frame-button"
-      >
-        {isFrameVisible ? "Hide Frame" : "Show Frame"}
-      </button>
-      
+
+      <ToggleButton isToggled={isFrameVisible} onToggle={toggleFrame} />
+      <QRComponent email={email} color={qrColor} />
       {/* Main Content with Photo Frame */}
       <div className={`content-with-frame ${isFrameVisible ? 'frame-visible' : ''}`}>
         {/* The Photo Frame */}
