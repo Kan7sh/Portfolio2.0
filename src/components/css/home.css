@@ -1,0 +1,57 @@
+.home-content{
+    background-color: rgb(15, 15, 15);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image:  radial-gradient(#4420a5 0.74px, rgb(15, 15, 15) 0.8px), radial-gradient(#481fb8 0.8px, rgb(0, 0, 0) 0.5px);
+    background-size: 26px 26px;
+    background-position:10px 10px;
+    font-size: 4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.letter {
+    display: inline-block;
+    transition: font-family 0.3s ease-in-out; /* Smooth font transition */
+  }
+  
+
+  
+  .text-container {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    height: 100px;
+    overflow: hidden;
+    text-align: left;
+    background: transparent; 
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  
+  .text-line {
+    font-size: 10px;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 2px 0;
+    font-weight: 400;
+    font-family: "IBM Plex Mono"; 
+  }
+  
+
+  
+  @keyframes blink-caret {
+    from, to {
+      border-right-color: transparent;
+    }
+    50% {
+      border-right-color: white;
+    }
+  }

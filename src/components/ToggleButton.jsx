@@ -1,5 +1,7 @@
 import React from "react";
-import { FaPowerOff } from "react-icons/fa";
+import { SlControlPause } from "react-icons/sl";
+import { SlControlPlay } from "react-icons/sl";
+
 import "./css/ToggleButton.css"; 
 
 const ToggleButton = ({ isToggled, onToggle }) => {
@@ -10,12 +12,12 @@ const ToggleButton = ({ isToggled, onToggle }) => {
     >
       <div className={`toggle-text ${isToggled ? "toggled" : ""}`}>
         <div className="toggle-text-inner">
-          <span>{isToggled ? "FREEZE" : "ACTIVATE"}</span>
-          <span>{isToggled ? "READY" : "TURN ON"}</span>
+          <span>{isToggled ? "RENDER" : "FREEZE"}</span>
+          <span>{isToggled ? "PLAY" : "PAUSE"}</span>
         </div>
       </div>
       <div className={`toggle-switch ${isToggled ? "toggled" : ""}`}>
-        <FaPowerOff className="toggle-icon" />
+        {isToggled ? <SlControlPlay className="toggle-icon" /> : <SlControlPause className="toggle-icon" />}
       </div>
     </div>
   );

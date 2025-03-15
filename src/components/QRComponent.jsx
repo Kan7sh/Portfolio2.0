@@ -5,10 +5,10 @@ const QRComponent = ({ email, color }) => {
   const emailLink = `mailto:${email}`;
 
   return (
-    <div style={{ position: "fixed", top: "20px", left: "20px", zIndex: 1000 }}>
+    <div style={{ position: "fixed", top: "25px", left: "25px", zIndex: 1000 }}>
       <QRCodeSVG
         value={emailLink}
-        size={100} 
+        size={80} 
         fgColor={color} 
         bgColor="transparent" 
       />

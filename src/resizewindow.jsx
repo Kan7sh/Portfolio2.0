@@ -2,37 +2,63 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import ToggleButton from "./components/ToggleButton";
 import QRComponent from "./components/QRComponent";
+import Home from "./components/home";
+import Contact from "./components/contacts";
 
 export default function PhotoFrameNavigation() {
   const [activeSection, setActiveSection] = useState("Home");
   const [isFrameVisible, setIsFrameVisible] = useState(false);
   const [transitioning, setTransitioning] = useState(false);
   const [previousSection, setPreviousSection] = useState(null);
+
+  useEffect(() => {
+    const cursor = document.querySelector(".custom-cursor");
+
+    // Move the cursor with the mouse
+    const handleMouseMove = (e) => {
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
+    };
+
+    // Enlarge the cursor when hovering over interactive elements
+    const handleMouseEnter = () => {
+      cursor.classList.add("enlarge");
+    };
+
+    const handleMouseLeave = () => {
+      cursor.classList.remove("enlarge");
+    };
+
+    // Add event listeners
+    document.addEventListener("mousemove", handleMouseMove);
+
+    const interactiveElements = document.querySelectorAll(
+      "button, a, .frame-nav-item, .input-field, .submit-btn, .toggle-container"
+    );
+    interactiveElements.forEach((element) => {
+      element.addEventListener("mouseenter", handleMouseEnter);
+      element.addEventListener("mouseleave", handleMouseLeave);
+    });
+
+    // Cleanup event listeners
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      interactiveElements.forEach((element) => {
+        element.removeEventListener("mouseenter", handleMouseEnter);
+        element.removeEventListener("mouseleave", handleMouseLeave);
+      });
+    };
+  }, []);
   
 
   const qrColor = isFrameVisible ? "#000000" : "#ffffff";
   const email = "kchhabra499@gmail.com";
   // Map sections to colors
-  const sectionColors = {
-    Home: "blue",
-    About: "purple",
-    Projects: "teal",
-    Contact: "crimson"
-  };
+
   
   // Section content for each window
   const sectionContents = {
-    Home: (
-      <div className="section-content">
-        <h2>Welcome Home</h2>
-        <p>This is your homepage where everything begins.</p>
-        <div className="home-features">
-          <div className="feature">Feature 1</div>
-          <div className="feature">Feature 2</div>
-          <div className="feature">Feature 3</div>
-        </div>
-      </div>
-    ),
+    Home: <Home/>,
     About: (
       <div className="section-content">
         <h2>About Me</h2>
@@ -56,18 +82,7 @@ export default function PhotoFrameNavigation() {
         </div>
       </div>
     ),
-    Contact: (
-      <div className="section-content">
-        <h2>Contact Me</h2>
-        <p>Get in touch with me using any of these methods.</p>
-        <div className="contact-form">
-          <input type="text" placeholder="Your Name" className="input-field" />
-          <input type="email" placeholder="Your Email" className="input-field" />
-          <textarea placeholder="Your Message" className="input-field textarea"></textarea>
-          <button className="submit-btn">Send Message</button>
-        </div>
-      </div>
-    )
+    Contact:<Contact/>
   };
 
   const changeSection = (newSection) => {
@@ -99,6 +114,7 @@ export default function PhotoFrameNavigation() {
   return (
     <div className="window-container">
       {/* Toggle Frame Button - Always visible */}
+      <div className="custom-cursor"></div>
 
       <ToggleButton isToggled={isFrameVisible} onToggle={toggleFrame} />
       <QRComponent email={email} color={qrColor} />
@@ -146,7 +162,6 @@ export default function PhotoFrameNavigation() {
         {/* Main Window Content (inside the frame) */}
         <div 
           className="main-window"
-          style={{ backgroundColor: sectionColors[activeSection] }}
         >
           {/* Previous Window Content (for exit animation) */}
           {transitioning && previousSection && (

@@ -1,4 +1,31 @@
 /* Base container */
+
+body {
+  cursor: none;
+  font-family: 'IBM Plex Mono';
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 38px; /* Initial size */
+  height: 38px;
+  border-radius: 50%; /* Circle shape */
+  background-color: transparent; /* Transparent fill */
+  border: 3px solid #e37c28; /* Circle border */
+  pointer-events: none; /* Ensure the cursor doesn't interfere with clicks */
+  transform: translate(-50%, -50%); /* Center the cursor */
+  z-index: 9999; /* Ensure it's above all other elements */
+  transition: width 0.2s ease, height 0.2s ease; /* Smooth size transition */
+}
+
+/* Enlarge the cursor on hover */
+.custom-cursor.enlarge {
+  width: 12px; /* Larger size */
+  height: 12px;
+}
+
 .window-container {
   position: fixed;
   top: 0;
@@ -108,10 +135,9 @@
   overflow: hidden; /* Ensure the content doesn't overflow the rounded corners */
 }
 
-.frame-visible .window-content {
-  padding: 10px;
-}
 
+
+/* Main window that displays the content */
 /* Main window that displays the content */
 .main-window {
   position: absolute;
@@ -128,9 +154,54 @@
   overflow: hidden;
 }
 
+/* Black translucent layer when frame is visible */
+.frame-visible .main-window::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Black translucent layer */
+  z-index: 10; /* Ensure it's above the main content */
+  pointer-events: none; /* Allow clicks to pass through */
+  opacity: 0; /* Start with 0 opacity */
+  animation: fadeIn 0.3s ease-in-out 0.3s forwards; /* Delay of 0.5s */
+}
+
+/* Centered PNG image inside the translucent layer */
+.frame-visible .main-window::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the image */
+  width: 100px; /* Adjust size as needed */
+  height: 100px;
+  background-image: url("./assets/12.svg"); /* Add your PNG image */
+  background-size: cover; /* Ensure the image fits */
+  background-repeat: no-repeat;
+  z-index: 11; /* Ensure it's above the translucent layer */
+  opacity: 0; /* Start with 0 opacity */
+  animation: fadeIn 0.3s ease-in-out 0.3s forwards; /* Delay of 0.5s */
+}
+
+/* Keyframes for fading in the translucent layer and image */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 /* Window content container */
 .window-content {
+  height: 100%;
+  width: 100%;
   display: flex;
+  padding: 0px;
+  margin: 0px;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -143,7 +214,6 @@
   top: 20px;
   right: 20px;
   padding: 10px 15px;
-  cursor: pointer;
   z-index: 100;
 }
 
@@ -155,7 +225,6 @@
   color: rgb(7, 7, 7);
   border-radius: 5px;
   text-align: center;
-  cursor: pointer;
   transition: all 0.3s ease;
   font-weight: bold;
   white-space: nowrap;
@@ -214,7 +283,7 @@
 /* Section content styling */
 .section-content {
   width: 100%;
-  max-width: 600px;
+  height: 100%;
 }
 
 .section-content h2 {
@@ -304,7 +373,6 @@
   border: none;
   border-radius: 5px;
   font-weight: bold;
-  cursor: pointer;
   transition: 0.3s ease;
 }
 

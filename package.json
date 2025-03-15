@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-spring/web": "^9.7.5",
     "@tailwindcss/vite": "^4.0.9",
     "framer-motion": "^12.4.10",
+    "qr-code-styling": "^1.9.1",
     "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
