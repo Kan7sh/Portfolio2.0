@@ -3,7 +3,7 @@ import "./css/home.css";
 
 const Home = () => {
   const fonts = [
-    "'Roboto', sans-serif",
+    "'IBM Plex Mono', system-ui",
     "'Barriecito', cursive",
     "'Diplomata', cursive",
     "'Fascinate Inline', cursive",
@@ -18,27 +18,48 @@ const Home = () => {
     "'Rubik 80s Fade', cursive",
   ];
 
-
   const word = "CREATIVE";
 
-  // State to store the font for each letter
   const [letterFonts, setLetterFonts] = useState(
-    Array(word.length).fill(fonts[0]) // Initialize all letters with the first font
+    Array(word.length).fill(fonts[0])
   );
 
-  // Function to get a random font from the fonts array
   const getRandomFont = () => {
     return fonts[Math.floor(Math.random() * fonts.length)];
   };
 
-  // Function to handle hover and update the font for a specific letter
-  const handleHover = (index) => {
-    const newFonts = [...letterFonts];
-    newFonts[index] = getRandomFont(); // Set a new random font for the hovered letter
-    setLetterFonts(newFonts); // Update the state
+  // Function to update a random letter's font every second
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const randomIndex = Math.floor(Math.random() * word.length); // Pick a random letter index
+      const newFonts = [...letterFonts];
+      newFonts[randomIndex] = getRandomFont(); // Set a new random font for the selected letter
+      setLetterFonts(newFonts); // Update the state
+    }, 1000); // Update every second
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, [letterFonts]);
+
+  // State for 3D text rotation
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+
+  // Function to handle mouse movement and update rotation
+  const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    const { innerWidth, innerHeight } = window;
+
+    // Calculate rotation based on cursor position
+    const x = (clientY / innerHeight - 0.5) * 40; // Tilt vertically
+    const y = (clientX / innerWidth + 0.5) * 40; // Tilt horizontally
+
+    setRotation({ x, y });
   };
 
-  // Text lines for the bottom-left area
+  useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   const textLines = [
     "Please wait",
     "Crafting Experiences...",
@@ -62,10 +83,8 @@ const Home = () => {
     "Waiting... but make it aesthetic",
     "Dialing into the matrix...",
     "Optimizing...",
-
   ];
 
-  // State to manage the visible lines
   const [visibleLines, setVisibleLines] = useState([]);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
@@ -74,7 +93,6 @@ const Home = () => {
   useEffect(() => {
     let timer;
     if (isTyping) {
-      // Typewriter effect: Add one character at a time
       timer = setTimeout(() => {
         setDisplayText((prev) =>
           textLines[currentLineIndex].slice(0, prev.length + 1)
@@ -82,27 +100,44 @@ const Home = () => {
         if (displayText.length === textLines[currentLineIndex].length) {
           setIsTyping(false);
           setTimeout(() => {
-            // Add the completed line to the visible lines
             setVisibleLines((prev) => {
               const newLines = [...prev, textLines[currentLineIndex]];
               if (newLines.length > 4) {
-                newLines.shift(); // Remove the oldest line if more than 4 lines
+                newLines.shift();
               }
               return newLines;
             });
-            // Move to the next line
             setCurrentLineIndex((prev) => (prev + 1) % textLines.length);
             setDisplayText("");
             setIsTyping(true);
-          }, 2000); // Wait 2 seconds before switching to the next line
+          }, 2000);
         }
-      }, 100); // Typing speed (100ms per character)
+      }, 100);
     }
     return () => clearTimeout(timer);
   }, [currentLineIndex, displayText, isTyping, textLines]);
 
   return (
     <div className="home-content">
+      {/* Vertical Lines */}
+      <div className="vertical-lines">
+        {[...Array(4)].map((_, index) => (
+          <div key={index} className="vertical-line">
+            <div className="pulse"></div>
+          </div>
+        ))}
+      </div>
+
+      {/* 3D Text - Software Developer */}
+      <div
+        className="three-d-text"
+        style={{
+          transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+        }}
+      >
+        Software Developer
+      </div>
+
       {/* "CREATIVE" word with random fonts */}
       <div>
         {word.split("").map((letter, index) => (
@@ -110,18 +145,15 @@ const Home = () => {
             key={index}
             className="letter"
             style={{
-              fontFamily: letterFonts[index], // Use the font from state
-              margin: "0 10px", // Add space between letters
-              transition: "font-family 0.3s ease-in-out", // Smooth font transition
+              fontFamily: letterFonts[index],
+              margin: "0 5px",
+              transition: "font-family 0.3s ease-in-out",
             }}
-            onMouseEnter={() => handleHover(index)} // Trigger font change on hover
           >
             {letter}
           </span>
         ))}
       </div>
-
-      {/* New text with transparent glass effect */}
 
       {/* Changing text lines with typewriter effect */}
       <div className="text-container">

@@ -1,57 +1,122 @@
-.home-content{
-    background-color: rgb(15, 15, 15);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image:  radial-gradient(#4420a5 0.74px, rgb(15, 15, 15) 0.8px), radial-gradient(#481fb8 0.8px, rgb(0, 0, 0) 0.5px);
-    background-size: 26px 26px;
-    background-position:10px 10px;
-    font-size: 4rem;
+.home-content {
+  background: linear-gradient(0deg, #362856, #2e2544, #000000, #000000, #000000, #000000, #000000, #000000, #765aba);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
   font-weight: bold;
   text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  perspective: 1000px; /* Add perspective for 3D effect */
+}
+
+.three-d-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg);
+  font-size: 6rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.1s ease-out;
+  transform-style: preserve-3d; /* Enable 3D transformations */
 }
 
 .letter {
-    display: inline-block;
-    transition: font-family 0.3s ease-in-out; /* Smooth font transition */
-  }
-  
+  font-size: 22px;
+  display: inline-block;
+  transition: font-family 0.3s ease-in-out;
+}
 
-  
-  .text-container {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    height: 100px;
-    overflow: hidden;
-    text-align: left;
-    background: transparent; 
-    border-radius: 10px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-  
-  .text-line {
-    font-size: 10px;
-    color: white;
-    white-space: nowrap;
-    overflow: hidden;
-    margin: 2px 0;
-    font-weight: 400;
-    font-family: "IBM Plex Mono"; 
-  }
-  
+.text-container {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  height: 100px;
+  overflow: hidden;
+  text-align: left;
+  background: transparent;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
 
-  
-  @keyframes blink-caret {
-    from, to {
-      border-right-color: transparent;
-    }
-    50% {
-      border-right-color: white;
-    }
+.text-line {
+  font-size: 10px;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 2px 0;
+  font-weight: 400;
+  font-family: "IBM Plex Mono";
+}
+
+.vertical-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly; /* Distribute lines evenly */
+  pointer-events: none;
+  z-index: 1; /* Ensure lines and pulses are in the background */
+}
+
+.vertical-line {
+  width: 0.8px;
+  height: 100%;
+  background: rgb(62, 62, 62); 
+  position: relative;
+}
+
+.pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)); /* Fading white pulse */
+  opacity: 0;
+  animation: pulse-animation 3s infinite;
+}
+
+/* Delay pulses so they run one after another */
+.vertical-line:nth-child(1) .pulse {
+  animation-delay: 0s;
+}
+.vertical-line:nth-child(2) .pulse {
+  animation-delay: 0.5s;
+}
+.vertical-line:nth-child(3) .pulse {
+  animation-delay: 1s;
+}
+.vertical-line:nth-child(4) .pulse {
+  animation-delay: 1.5s;
+}
+
+@keyframes pulse-animation {
+  0% {
+    top: 0;
+    opacity: 1;
   }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-right-color: transparent;
+  }
+  50% {
+    border-right-color: white;
+  }
+}
