@@ -22,6 +22,7 @@ export default function PhotoFrameNavigation() {
 
     // Enlarge the cursor when hovering over interactive elements
     const handleMouseEnter = () => {
+      console.log("Mouse Enter");
       cursor.classList.add("enlarge");
     };
 

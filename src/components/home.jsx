@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./css/home.css";
-
+import logoWhite from "../assets/logo_white.png"; // Adjust the path as needed
+import { GrBottomCorner, GrTopCorner } from "react-icons/gr";
 const Home = () => {
   const fonts = [
     "'IBM Plex Mono', system-ui",
@@ -8,7 +9,6 @@ const Home = () => {
     "'Diplomata', cursive",
     "'Fascinate Inline', cursive",
     "'Knewave', cursive",
-    "'Micro 5', cursive",
     "'Monoton', cursive",
     "'Offside', cursive",
     "'Pattaya', sans-serif",
@@ -18,7 +18,7 @@ const Home = () => {
     "'Rubik 80s Fade', cursive",
   ];
 
-  const word = "CREATIVE";
+  const word = "Kanish Chhabra";
 
   const [letterFonts, setLetterFonts] = useState(
     Array(word.length).fill(fonts[0])
@@ -28,29 +28,35 @@ const Home = () => {
     return fonts[Math.floor(Math.random() * fonts.length)];
   };
 
-  // Function to update a random letter's font every second
   useEffect(() => {
     const interval = setInterval(() => {
-      const randomIndex = Math.floor(Math.random() * word.length); // Pick a random letter index
+      const randomIndex = Math.floor(Math.random() * word.length);
       const newFonts = [...letterFonts];
-      newFonts[randomIndex] = getRandomFont(); // Set a new random font for the selected letter
-      setLetterFonts(newFonts); // Update the state
-    }, 1000); // Update every second
+      newFonts[randomIndex] = getRandomFont();
+      setLetterFonts(newFonts);
+    }, 1000);
 
-    return () => clearInterval(interval); // Cleanup interval on unmount
+    return () => clearInterval(interval);
   }, [letterFonts]);
 
-  // State for 3D text rotation
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [buttonText, setButtonText] = useState("ABOUT ME");  
 
-  // Function to handle mouse movement and update rotation
+  const handleButtonHover = () => {
+    console.log("Hovered!"); // Log hover event
+    setButtonText("ABOUT ME ?"); // Change text on hover
+  };
+
+  const handleButtonLeave = () => {
+    setButtonText("ABOUT ME"); // Revert text on hover out
+  };
+
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
     const { innerWidth, innerHeight } = window;
 
-    // Calculate rotation based on cursor position
-    const x = (clientY / innerHeight - 0.5) * 40; // Tilt vertically
-    const y = (clientX / innerWidth + 0.5) * 40; // Tilt horizontally
+    const x = (clientY / innerHeight - 0.5) * 20;
+    const y = (clientX / innerWidth - 0.5) * 20;
 
     setRotation({ x, y });
   };
@@ -61,12 +67,12 @@ const Home = () => {
   }, []);
 
   const textLines = [
-    "Please wait",
-    "Crafting Experiences...",
+    "Please wait...",
+    "Crafting Experiences",
     "debugging...",
     "Lots of bugs",
     "Loading...",
-    "Go Grab a Coffee",
+    "Go Grab a Coffee", 
     "Making something to attract you",
     "Running...",
     "This UI took a lot of time",
@@ -80,7 +86,7 @@ const Home = () => {
     "Hacking time and space",
     "Deploying...",
     "Warming up the time machine",
-    "Waiting... but make it aesthetic",
+    "Mxake it aesthetic",
     "Dialing into the matrix...",
     "Optimizing...",
   ];
@@ -119,43 +125,60 @@ const Home = () => {
 
   return (
     <div className="home-content">
-      {/* Vertical Lines */}
-      <div className="vertical-lines">
-        {[...Array(4)].map((_, index) => (
-          <div key={index} className="vertical-line">
-            <div className="pulse"></div>
-          </div>
-        ))}
+      {/* Logo Container */}
+      <div className="logo-container">
+        <img src={logoWhite} alt="Logo" className="logo" />
       </div>
 
-      {/* 3D Text - Software Developer */}
-      <div
-        className="three-d-text"
-        style={{
-          transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
-        }}
-      >
-        Software Developer
-      </div>
-
-      {/* "CREATIVE" word with random fonts */}
+      {/* Center Content */}
+      <div className="center-content">
       <div>
-        {word.split("").map((letter, index) => (
-          <span
-            key={index}
-            className="letter"
-            style={{
-              fontFamily: letterFonts[index],
-              margin: "0 5px",
-              transition: "font-family 0.3s ease-in-out",
-            }}
-          >
-            {letter}
-          </span>
-        ))}
+            {word.split("").map((letter, index) => (
+              <span
+                key={index}
+                className="letter"
+                style={{
+                  fontFamily: letterFonts[index],
+                  margin: "0 4px",
+                  transition: "font-family 0.3s ease-in-out",
+                }}
+              >
+                {letter}
+              </span>
+            ))}
+          </div>
+        {/* <div className="name-container">Kanish Chhabra</div> */}
+
+        <div
+          className="three-d-text"
+          style={{
+            transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+          }}
+        >
+          Code Alchemist
+        </div>
+        <div className="vertical-lines">
+          {[...Array(4)].map((_, index) => (
+            <div key={index} className="vertical-line">
+              <div className="pulse"></div>
+            </div>
+          ))}
+        </div>
+        <div className="about-me">
+          As a software developer, I thrive on solving complex problems, crafting seamless user experiences, and transforming ideas into reality through clean, efficient code. Every line I write is a fusion of logic, design, and boundless creativity.
+        </div>
+
+        {/* Boxy Button with Arrows */}
+        <button className="boxy-button"  
+                onMouseEnter={handleButtonHover} 
+                onMouseLeave={handleButtonLeave} >
+          <GrTopCorner className="arrow-icon top-left" />
+          <GrBottomCorner className="arrow-icon bottom-right" />
+          {buttonText}
+        </button>
       </div>
 
-      {/* Changing text lines with typewriter effect */}
+      {/* Text Container */}
       <div className="text-container">
         {visibleLines.map((line, index) => (
           <div key={index} className="text-line">

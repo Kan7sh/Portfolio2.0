@@ -1,8 +1,28 @@
+.logo-container {
+  position: absolute;
+  top: 20px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2; /* Ensure the logo is above other content */
+}
+
+.logo {
+  width: 45px; /* Adjust size as needed */
+  height: auto;
+} 
+
+
+.name-container{
+  font-family: "IBM Plex Mono";
+  font-size: 1.5rem;
+}
+
+
 .home-content {
-  background: linear-gradient(0deg, #362856, #2e2544, #000000, #000000, #000000, #000000, #000000, #000000, #765aba);
+  background: linear-gradient(15deg, #d00808,#d00808,#d00808,#d8640a, #ea9d44,#ea9d44, #0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #ea9d44);
   width: 100%;
   height: 100vh;
-  display: flex;
+  display: flex;  
   align-items: center;
   justify-content: center;
   font-size: 4rem;
@@ -10,24 +30,33 @@
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
-  perspective: 1000px; /* Add perspective for 3D effect */
+  perspective: 1000px;
 }
 
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
 .three-d-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg);
-  font-size: 6rem;
+  font-size: 7rem;
   font-weight: bold;
   color: white;
+  font-family: "Anton";
+  z-index: 5;
   text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
   transition: transform 0.1s ease-out;
   transform-style: preserve-3d; /* Enable 3D transformations */
 }
 
 .letter {
-  font-size: 22px;
+  font-size: 20px;
+  font-weight: 700;
+  z-index: 5;
   display: inline-block;
   transition: font-family 0.3s ease-in-out;
 }
@@ -76,6 +105,65 @@
   position: relative;
 }
 
+/* Boxy Button */
+.boxy-button {
+  position: relative;
+  width: 150px;
+  margin-top: 20px; /* Space between .about-me and the button */
+  padding: 15px 30px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  border-radius: 5px;
+  font-family: "IBM Plex Mono";
+  font-size: 0.85rem;
+  font-weight: 400;
+  z-index: 5;
+  transition: all 0.3s ease;
+}
+
+.boxy-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #765aba;
+  cursor: none;
+}
+
+/* Arrow Icons */
+.arrow-icon {
+  position: absolute;
+  font-size: 0.8rem;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.top-left {
+  top: 5px;
+  left: 5px;
+}
+
+.bottom-right {
+  bottom: 5px;
+  right: 5px;
+}
+
+/* Hover Effects for Icons */
+.boxy-button:hover .top-left {
+  transform: translate(-2px,-2px);
+}
+
+.boxy-button:hover .bottom-right {
+  transform: translate(2px, 2px);
+}
+.about-me{
+  padding-top: 0px;
+  width: 65%;
+  z-index: 5;
+  line-height: 1.8;
+   font-family: "IBM Plex Mono";
+    font-size: 0.79rem;
+    font-weight: 200;
+}
+
 .pulse {
   position: absolute;
   top: 0;
@@ -92,10 +180,10 @@
   animation-delay: 0s;
 }
 .vertical-line:nth-child(2) .pulse {
-  animation-delay: 0.5s;
+  animation-delay: 1s;
 }
 .vertical-line:nth-child(3) .pulse {
-  animation-delay: 1s;
+  animation-delay: 0.5s;
 }
 .vertical-line:nth-child(4) .pulse {
   animation-delay: 1.5s;

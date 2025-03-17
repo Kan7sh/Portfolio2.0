@@ -12,8 +12,7 @@ body {
   width: 38px; /* Initial size */
   height: 38px;
   border-radius: 50%; /* Circle shape */
-  background-color: transparent; /* Transparent fill */
-  border: 3px solid #e37c28; /* Circle border */
+  background-color: #b3b3b3; /* Transparent fill */
   pointer-events: none; /* Ensure the cursor doesn't interfere with clicks */
   transform: translate(-50%, -50%); /* Center the cursor */
   z-index: 9999; /* Ensure it's above all other elements */
