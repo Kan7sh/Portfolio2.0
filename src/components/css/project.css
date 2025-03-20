@@ -1,98 +1,45 @@
-/* About Section */
-.about-section {
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .about-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .about-section p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-  }
-  
-  .about-details {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-  }
-  
-  .detail {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    flex: 1;
-  }
-  
-  .detail h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .detail p {
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-  
-  /* Projects Section */
-  .projects-section {
-    background: linear-gradient(15deg, #72ab09f2,#72ab09f2,#72ab09f2);
-    width: 100%;
-    height: 100vh;
-    display: flex;  
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
-    perspective: 1000px;
-  }
-  
-  .projects-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .projects-section p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-  }
-  
-  .project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-  }
-  
-  .project {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: left;
-  }
-  
-  .project h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .project p {
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 15px;
-  }
-  
-  .project a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .project a:hover {
-    text-decoration: underline;
-  }
+.projects-section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1a1a1a; /* Light background for the section */
+  position: relative;
+  overflow: hidden;
+}
+
+.letter {
+  font-size: 25px;
+  font-weight: 700;
+  z-index: 5;
+  display: inline-block;
+  transition: font-family 0.3s ease-in-out;
+} 
+
+.project-box-container {
+  display: flex;
+  width: 80%;
+  height: 60%;
+  gap: 10px; /* Space between boxes */
+}
+
+.project-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  transition: flex 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.project-box.expanded {
+  flex: 6; /* Expanded box takes 60% width */
+}
+
+.project-box:not(.expanded) {
+  flex: 1; /* Unexpanded boxes take 10% width */
+}
