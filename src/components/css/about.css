@@ -1,0 +1,98 @@
+/* About Section */
+.about-section {
+    background: linear-gradient(15deg, #093cabf2,#093cabf2,#093cabf2);
+    width: 100%;
+    height: 100vh;
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    perspective: 1000px;
+  }
+  
+  .about-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .about-section p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  .about-details {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  
+  .detail {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+  }
+  
+  .detail h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .detail p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Projects Section */
+  .projects-section {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .projects-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .projects-section p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .project {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+  }
+  
+  .project h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .project p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+  
+  .project a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .project a:hover {
+    text-decoration: underline;
+  }

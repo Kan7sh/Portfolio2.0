@@ -3,26 +3,27 @@ import "./App.css";
 import ToggleButton from "./components/ToggleButton";
 import QRComponent from "./components/QRComponent";
 import Home from "./components/home";
-import Contact from "./components/contacts";
-
+import About from "./components/About";
+import Projects from "./components/Project";
+import logoWhite from "./assets/logo_white.png"; // Adjust the path as needed
+import logoBlack from "./assets/logo_black.png"; // Adjust the path as needed
 export default function PhotoFrameNavigation() {
   const [activeSection, setActiveSection] = useState("Home");
   const [isFrameVisible, setIsFrameVisible] = useState(false);
   const [transitioning, setTransitioning] = useState(false);
   const [previousSection, setPreviousSection] = useState(null);
+  // Add this new state to control animations
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const cursor = document.querySelector(".custom-cursor");
 
-    // Move the cursor with the mouse
     const handleMouseMove = (e) => {
       cursor.style.left = `${e.clientX}px`;
       cursor.style.top = `${e.clientY}px`;
     };
 
-    // Enlarge the cursor when hovering over interactive elements
     const handleMouseEnter = () => {
-      console.log("Mouse Enter");
       cursor.classList.add("enlarge");
     };
 
@@ -30,7 +31,6 @@ export default function PhotoFrameNavigation() {
       cursor.classList.remove("enlarge");
     };
 
-    // Add event listeners
     document.addEventListener("mousemove", handleMouseMove);
 
     const interactiveElements = document.querySelectorAll(
@@ -41,7 +41,6 @@ export default function PhotoFrameNavigation() {
       element.addEventListener("mouseleave", handleMouseLeave);
     });
 
-    // Cleanup event listeners
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
       interactiveElements.forEach((element) => {
@@ -50,40 +49,29 @@ export default function PhotoFrameNavigation() {
       });
     };
   }, []);
-  
 
   const qrColor = isFrameVisible ? "#000000" : "#ffffff";
   const email = "kchhabra499@gmail.com";
-  // Map sections to colors
 
-  
-  // Section content for each window
+  const handleAboutMeClick = () => {
+    // First make the frame visible if it's not already
+    if (!isFrameVisible) {
+      setIsFrameVisible(true);
+      // Pause animations when frame becomes visible
+      setIsPaused(true);
+    }
+    
+    // Then change to the About section
+    setTimeout(() => {
+      changeSection("About");
+    }, 600);
+  };
+
   const sectionContents = {
-    Home: <Home/>,
-    About: (
-      <div className="section-content">
-        <h2>About Me</h2>
-        <p>Learn more about who I am and what I do.</p>
-        <div className="about-info">
-          <div className="info-box">Experience</div>
-          <div className="info-box">Skills</div>
-          <div className="info-box">Education</div>
-        </div>
-      </div>
-    ),
-    Projects: (
-      <div className="section-content">
-        <h2>My Projects</h2>
-        <p>Check out some of my recent work.</p>
-        <div className="project-grid">
-          <div className="project">Project 1</div>
-          <div className="project">Project 2</div>
-          <div className="project">Project 3</div>
-          <div className="project">Project 4</div>
-        </div>
-      </div>
-    ),
-    Contact:<Contact/>
+    // Pass isPaused state to all components
+    Home: <Home onAboutMeClick={handleAboutMeClick} isPaused={isPaused} />,
+    About: <About isPaused={isPaused} />,
+    Projects: <Projects isPaused={isPaused} />,
   };
 
   const changeSection = (newSection) => {
@@ -91,39 +79,44 @@ export default function PhotoFrameNavigation() {
       setTransitioning(true);
       setPreviousSection(activeSection);
       
-      // After animation delay, change the actual section
+      // Set active section immediately, but keep the transitioning state
+      setActiveSection(newSection);
+      
       setTimeout(() => {
-        setActiveSection(newSection);
-        setTimeout(() => {
-          setIsFrameVisible(prev => !prev);
-          setTransitioning(false);
-          setPreviousSection(null);
-        }, 500);
-      }, 500);
+        // End the transition after animation completes
+        setTransitioning(false);
+        setPreviousSection(null);
+        setIsFrameVisible(prev => !prev);
+        // Toggle the paused state when frame visibility changes
+        setIsPaused(prev => !prev);
+      }, 700); // Match this to your animation duration
     }
   };
 
   const toggleFrame = () => {
     setTimeout(() => {
-      setIsFrameVisible(prev => !prev);
-    }, 300); // Delay of 500ms
+      setIsFrameVisible((prev) => !prev);
+      // Toggle the paused state when frame visibility changes
+      setIsPaused((prev) => !prev);
+    }, 300);
   };
 
-  const leftNavItems = ["Home", "About", "Projects", "Contact"];
-  const rightNavItems = ["Twitter", "LinkedIn", "GitHub", "Email"];
+  const leftNavItems = ["Home", "About", "Projects"];
+  const rightNavItems = ["LinkedIn", "GitHub", "Twitter"];
 
   return (
     <div className="window-container">
-      {/* Toggle Frame Button - Always visible */}
       <div className="custom-cursor"></div>
-
+      <div className="logo-container">
+        <img 
+          src={isFrameVisible ? logoBlack : logoWhite} 
+          alt="Logo" 
+          className="logo" 
+        />
+      </div>
       <ToggleButton isToggled={isFrameVisible} onToggle={toggleFrame} />
-      <QRComponent email={email} color={qrColor} />
-      {/* Main Content with Photo Frame */}
-      <div className={`content-with-frame ${isFrameVisible ? 'frame-visible' : ''}`}>
-        {/* The Photo Frame */}
+      <div className={`content-with-frame ${isFrameVisible ? "frame-visible" : ""}`}>
         <div className="photo-frame">
-          {/* Left Navigation in Frame */}
           <div className="frame-nav left-frame">
             {leftNavItems.map((item, index) => (
               <div
@@ -131,59 +124,53 @@ export default function PhotoFrameNavigation() {
                 className={`frame-nav-item ${activeSection === item ? "active" : ""}`}
                 onClick={() => changeSection(item)}
               >
-                {item}
+                {item.toUpperCase()}
               </div>
             ))}
           </div>
-          
-          {/* Right Navigation in Frame */}
+
           <div className="frame-nav right-frame">
             {rightNavItems.map((item, index) => (
-              <div
+              <a
                 key={index}
                 className="frame-nav-item"
-                onClick={() => console.log(`${item} clicked`)}
+                href={
+                  item === "LinkedIn"
+                    ? "https://linkedin.com"
+                    : item === "GitHub"
+                    ? "https://github.com"
+                    : "https://twitter.com"
+                }
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                {item}
-              </div>
+                {item.toUpperCase()}
+              </a>
             ))}
           </div>
-          
-          {/* Top Frame */}
+
           <div className="frame-border top-frame">
-            <span className="frame-title">{activeSection}</span>
           </div>
-          
-          {/* Bottom Frame */}
+
           <div className="frame-border bottom-frame">
-            <span className="frame-info">© 2025 My Portfolio</span>
+          {/* <span className="frame-info">I build cool stuff… and occasionally break things.</span> */}
+
+            <span className="frame-info">Code so clean, even my mom would be proud</span>
           </div>
         </div>
-        
-        {/* Main Window Content (inside the frame) */}
-        <div 
-          className="main-window"
-        >
-          {/* Previous Window Content (for exit animation) */}
-          {transitioning && previousSection && (
-            <div className="window-content exit-up">
-              {sectionContents[previousSection]}
-            </div>
-          )}
-          
-          {/* New Window Content (for enter animation) */}
-          {transitioning && (
-            <div className="window-content enter-from-bottom">
-              {sectionContents[activeSection]}
-            </div>
-          )}
-          
-          {/* Active Window Content */}
-          {!transitioning && (
-            <div className="window-content">
-              {sectionContents[activeSection]}
-            </div>
-          )}
+
+        <div className="main-window">
+          <div className="content-container">
+            {transitioning && previousSection && (
+              <div className="window-content exit-up">{sectionContents[previousSection]}</div>
+            )}
+
+            {transitioning ? (
+              <div className="window-content enter-from-bottom">{sectionContents[activeSection]}</div>
+            ) : (
+              <div className="window-content">{sectionContents[activeSection]}</div>
+            )}
+          </div>
         </div>
       </div>
     </div>

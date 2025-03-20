@@ -8,7 +8,7 @@ const QRComponent = ({ email, color }) => {
     <div style={{ position: "fixed", top: "25px", left: "25px", zIndex: 1000 }}>
       <QRCodeSVG
         value={emailLink}
-        size={65} 
+        size={60} 
         fgColor={color} 
         bgColor="transparent" 
       />

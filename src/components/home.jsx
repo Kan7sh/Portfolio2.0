@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./css/home.css";
 import logoWhite from "../assets/logo_white.png"; // Adjust the path as needed
 import { GrBottomCorner, GrTopCorner } from "react-icons/gr";
-const Home = () => {
+import { QRCodeSVG } from "qrcode.react"; // Import QRCodeSVG
+
+const Home = ({ onAboutMeClick, isPaused }) => {
   const fonts = [
     "'IBM Plex Mono', system-ui",
     "'Barriecito', cursive",
@@ -29,6 +31,9 @@ const Home = () => {
   };
 
   useEffect(() => {
+    // Only run this effect if animations are not paused
+    if (isPaused) return;
+    
     const interval = setInterval(() => {
       const randomIndex = Math.floor(Math.random() * word.length);
       const newFonts = [...letterFonts];
@@ -37,21 +42,29 @@ const Home = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [letterFonts]);
+  }, [letterFonts, isPaused]); // Add isPaused to dependency array
 
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [buttonText, setButtonText] = useState("ABOUT ME");  
 
   const handleButtonHover = () => {
-    console.log("Hovered!"); // Log hover event
-    setButtonText("ABOUT ME ?"); // Change text on hover
+    setButtonText("ABOUT ME ?");
   };
 
   const handleButtonLeave = () => {
-    setButtonText("ABOUT ME"); // Revert text on hover out
+    setButtonText("ABOUT ME");
+  };
+
+  const handleButtonClick = () => {
+    if (onAboutMeClick) {
+      onAboutMeClick();
+    }
   };
 
   const handleMouseMove = (e) => {
+    // Only update rotation if not paused
+    if (isPaused) return;
+    
     const { clientX, clientY } = e;
     const { innerWidth, innerHeight } = window;
 
@@ -64,7 +77,7 @@ const Home = () => {
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [handleMouseMove]); // Add handleMouseMove to dependency array
 
   const textLines = [
     "Please wait...",
@@ -97,6 +110,9 @@ const Home = () => {
   const [isTyping, setIsTyping] = useState(true);
 
   useEffect(() => {
+    // Skip this effect when animations are paused
+    if (isPaused) return;
+    
     let timer;
     if (isTyping) {
       timer = setTimeout(() => {
@@ -121,33 +137,37 @@ const Home = () => {
       }, 100);
     }
     return () => clearTimeout(timer);
-  }, [currentLineIndex, displayText, isTyping, textLines]);
+  }, [currentLineIndex, displayText, isTyping, textLines, isPaused]); // Add isPaused to dependency array
 
   return (
     <div className="home-content">
       {/* Logo Container */}
-      <div className="logo-container">
-        <img src={logoWhite} alt="Logo" className="logo" />
-      </div>
 
       {/* Center Content */}
+      <div style={{ position: "fixed", top: "25px", left: "25px", zIndex: 1000 }}>
+          <QRCodeSVG
+            value={`mailto:kchhabra499@gmail.com`} // Replace with your email
+            size={60}
+            fgColor="#ffffff" // White color for QR code
+            bgColor="transparent"
+          />
+        </div>
       <div className="center-content">
-      <div>
-            {word.split("").map((letter, index) => (
-              <span
-                key={index}
-                className="letter"
-                style={{
-                  fontFamily: letterFonts[index],
-                  margin: "0 4px",
-                  transition: "font-family 0.3s ease-in-out",
-                }}
-              >
-                {letter}
-              </span>
-            ))}
-          </div>
-        {/* <div className="name-container">Kanish Chhabra</div> */}
+        <div>
+          {word.split("").map((letter, index) => (
+            <span
+              key={index}
+              className="letter"
+              style={{
+                fontFamily: letterFonts[index],
+                margin: "0 4px",
+                transition: "font-family 0.3s ease-in-out",
+              }}
+            >
+              {letter}
+            </span>
+          ))}
+        </div>
 
         <div
           className="three-d-text"
@@ -160,7 +180,8 @@ const Home = () => {
         <div className="vertical-lines">
           {[...Array(4)].map((_, index) => (
             <div key={index} className="vertical-line">
-              <div className="pulse"></div>
+              {/* Apply a CSS class to control animation */}
+              <div className={`pulse ${isPaused ? 'paused' : ''}`}></div>
             </div>
           ))}
         </div>
@@ -169,9 +190,10 @@ const Home = () => {
         </div>
 
         {/* Boxy Button with Arrows */}
-        <button className="boxy-button"  
+        <button className="boxy-button "  
                 onMouseEnter={handleButtonHover} 
-                onMouseLeave={handleButtonLeave} >
+                onMouseLeave={handleButtonLeave} 
+                onClick={handleButtonClick} >
           <GrTopCorner className="arrow-icon top-left" />
           <GrBottomCorner className="arrow-icon bottom-right" />
           {buttonText}
