@@ -6,7 +6,7 @@
   
   justify-content: center;
   background-color: rgb(23, 23, 23);
-  /* background: radial-gradient(circle at top left, #bb0000,#d8640a, #ea9d44, #0f0f0f,#0f0f0f,#0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #ea9d44); */
+  /* background: linear-gradient(115deg, #0f0f0f,#0f0f0f,#0f0f0f, #0f0f0f, #0f0f0f,#0f0f0f,#0f0f0f, #0f0f0f, #0f0f0f,#0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f,#0f0f0f, #b16610); */
   position: relative;
   overflow: hidden;
 }
@@ -15,9 +15,9 @@
   font-family: 'IBM Plex Mono';
   font-weight: 400;
   position: absolute;
-  top: 70px;
+  top: 60px;
   left: 40px;
-  font-size: 30px;
+  font-size: 38px;
 }
 
 .letter {
@@ -163,6 +163,37 @@
   object-fit: cover;
   border-radius: 10px;
   transition: opacity 0.5s ease-in-out, transform 0.1s ease-in-out;
+}
+
+/* White line checks container */
+/* White line checks container */
+.line-checks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 180px;
+  overflow: hidden;
+  pointer-events: none; /* So it doesn't interfere with mouse events */
+  z-index: 0;
+}
+
+/* Create the horizontal lines */
+.line-checks .horizontal-line {
+  position: absolute;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
+  z-index: 0; /* Ensure horizontal lines are below vertical lines */
+}
+
+/* Create the vertical lines */
+.line-checks .vertical-line-check {
+  position: absolute;
+  top: 0;
+  width: 1px; /* Very thin line */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
+  z-index: 0; /* Ensure vertical lines are below the content */
 }
 
 /* Vertical Lines with Pulses */

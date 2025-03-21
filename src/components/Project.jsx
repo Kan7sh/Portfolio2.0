@@ -80,6 +80,31 @@ const Projects = () => {
 
   return (
     <div className="projects-section" onMouseMove={handleMouseMove}>
+<div className="line-checks"> 
+{[...Array(7)].map((_, index) => (
+        <div 
+          key={`h-${index}`} 
+          className="horizontal-line" 
+          style={{ 
+            top: `${index * 40}px`, // Increased spacing for gaps
+            width: `${300 - index * 30}px`, 
+            opacity: 1 - (index * 0.1)
+          }}
+        />
+      ))}
+
+{[...Array(5)].map((_, index) => (
+    <div 
+      key={`v-${index}`} 
+      className="vertical-line-check" // Different class name to avoid confusion with your existing vertical lines
+      style={{ 
+        left: `${index * 40}px`, // Every 40px
+        height: `${200 - index * 30}px`, 
+        opacity: 1 - (index * 0.1)
+      }}
+    />
+  ))}
+        </div>
         <div className="vertical-lines">
     {[...Array(4)].map((_, index) => (
       <div key={index} className="vertical-line">
