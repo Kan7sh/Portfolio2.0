@@ -1,8 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { LuExpand, LuArrowUpRight } from "react-icons/lu"; // Import arrow icon
 import "./css/project.css";
+import sampleProject from "../assets/project_testing.jpg";
 
 const Projects = () => {
-  const [expandedBox, setExpandedBox] = useState(0); // 0 for first box, 1 for second, 2 for third
+  const [expandedBox, setExpandedBox] = useState(0); // null for no box expanded
+  const [hoverTimeout, setHoverTimeout] = useState(null); // Timeout for hover delay
+  const [projectNames, setProjectNames] = useState(["PROJECT ONE", "PROJECT TWO", "PROJECT THREE"]);
+  const [currentProjectName, setCurrentProjectName] = useState("");
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const projectBoxRefs = useRef([]); // Refs for project boxes
+
   const fonts = [
     "'IBM Plex Mono', system-ui",
     "'Barriecito', cursive",
@@ -18,13 +26,8 @@ const Projects = () => {
     "'Rubik 80s Fade', cursive",
   ];
 
-   const word = "PROJECTS";
-  
-    const [letterFonts, setLetterFonts] = useState(
-      Array(word.length).fill(fonts[0])
-    );
-
-  // Random font generator for the title
+  const word = "PROJECTS";
+  const [letterFonts, setLetterFonts] = useState(Array(word.length).fill(fonts[0]));
   const [randomFont, setRandomFont] = useState(fonts[0]);
 
   const getRandomFont = () => {
@@ -32,8 +35,6 @@ const Projects = () => {
   };
 
   useEffect(() => {
-    // Only run this effect if animations are not paused
-    
     const interval = setInterval(() => {
       const randomIndex = Math.floor(Math.random() * word.length);
       const newFonts = [...letterFonts];
@@ -42,50 +43,100 @@ const Projects = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [letterFonts]); 
+  }, [letterFonts]);
+
+  // Handle hover with a 1-second delay
+  const handleMouseEnter = (index) => {
+    const timeout = setTimeout(() => {
+      setExpandedBox(index);
+      setCurrentProjectName(projectNames[index]);
+    }, 400);
+    setHoverTimeout(timeout);
+  };
+
+  // Clear timeout if mouse leaves before 1 second
+  const handleMouseLeave = () => {
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
+  };
+
+  // Track cursor position for image movement
+  const handleMouseMove = (e) => {
+    setCursorPosition({ x: e.clientX, y: e.clientY });
+  };
+
+  // Calculate image position based on cursor
+  const getImagePosition = (index) => {
+    if (expandedBox === index && projectBoxRefs.current[index]) {
+      const boxRect = projectBoxRefs.current[index].getBoundingClientRect();
+      const offsetX = (cursorPosition.x - boxRect.left - boxRect.width / 2) / 30;
+      const offsetY = (cursorPosition.y - boxRect.top - boxRect.height / 2) / 30;
+      return { transform: `translate(${offsetX}px, ${offsetY}px)` };
+    }
+    return {};
+  };
 
   return (
-    <div className="projects-section">
-      {/* Random font-changing title */}
-      <h2 style={{ fontFamily: randomFont, position: "absolute", top: "20px", left: "20px" }}>
-      <div>
-          {word.split("").map((letter, index) => (
-            <span
-              key={index}
-              className="letter"
-              style={{
-                fontFamily: letterFonts[index],
-                margin: "0 4px",
-                transition: "font-family 0.3s ease-in-out",
-              }}
-            >
-              {letter}
-            </span>
-          ))}
-        </div>      </h2>
+    <div className="projects-section" onMouseMove={handleMouseMove}>
+        <div className="vertical-lines">
+    {[...Array(4)].map((_, index) => (
+      <div key={index} className="vertical-line">
+        <div className={`pulse`}></div>
+      </div>
+    ))}
+  </div>
+      <div className="section-title">PROJECTS</div>
 
-      {/* Three boxes */}
       <div className="project-box-container">
-        <div
-          className={`project-box ${expandedBox === 0 ? "expanded" : ""}`}
-          style={{ backgroundColor: "#808080" }} // Grey background
-          onMouseEnter={() => setExpandedBox(0)}
-        >
-          Box 1
-        </div>
-        <div
-          className={`project-box ${expandedBox === 1 ? "expanded" : ""}`}
-          style={{ backgroundColor: "#FF0000" }} // Red background
-          onMouseEnter={() => setExpandedBox(1)}
-        >
-          Box 2
-        </div>
-        <div
-          className={`project-box ${expandedBox === 2 ? "expanded" : ""}`}
-          style={{ backgroundColor: "#FFFF00" }} // Yellow background
-          onMouseEnter={() => setExpandedBox(2)}
-        >
-          Box 3
+        {[0, 1, 2].map((index) => (
+          <div
+            key={index}
+            ref={(el) => (projectBoxRefs.current[index] = el)}
+            className={`project-box ${expandedBox === index ? "expanded" : ""}`}
+            style={{ backgroundColor: ["#9f9f9f", "#bb0000", "#ea9d44"][index] }}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={handleMouseLeave}
+          >
+            {expandedBox === index ? (
+              <>
+                <img
+                  src={sampleProject}
+                  alt="Project"
+                  className="project-image"
+                  style={getImagePosition(index)}
+                />
+                {/* Circular Button with Arrow Icon */}
+                <a
+                  href="https://example.com" // Replace with your project link
+                  className="project-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <LuArrowUpRight size={20} /> {/* Arrow icon */}
+                </a>
+              </>
+            ) : (
+              <LuExpand className="react-icon" color="black" />
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Project Name Display */}
+      <div className="project-name-container">
+        <div className="project-name-slider">
+          {projectNames.map((name, index) => (
+            <div
+              key={index}
+              className={`project-name ${
+                expandedBox === index ? "active" : ""
+              }`}
+            >
+              {name}
+            </div>
+          ))}
         </div>
       </div>
     </div>
