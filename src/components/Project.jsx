@@ -112,7 +112,7 @@ const Projects = () => {
       </div>
     ))}
   </div>
-      <div className="section-title">PROJECTS</div>
+      <div className="section-title">(PROJECTS)</div>
 
       <div className="project-box-container">
         {[0, 1, 2].map((index) => (
