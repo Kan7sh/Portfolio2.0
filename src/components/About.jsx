@@ -2,6 +2,7 @@ import React from "react";
 import "./css/about.css";
 import profilePicture from "../assets/profile_picture.jpg"; // Adjust the path as needed
 import { useState, useEffect, useRef } from "react";
+import { RiArrowDownWideLine } from "react-icons/ri";
 
 import img1 from "../assets/1.png";
 import img2 from "../assets/2.png";
@@ -26,6 +27,7 @@ const About = ({isPaused = false}) => {
   const intervalRef = useRef(null);
   const [currentImage, setCurrentImage] = useState(images[0]);
   const [isHovered, setIsHovered] = useState(false);
+  const [showProfileImage, setShowProfileImage] = useState(false);
 
   const changeImageRandomly = () => {
     const randomIndex = Math.floor(Math.random() * images.length);
@@ -91,7 +93,42 @@ const About = ({isPaused = false}) => {
         ))}
       </div>
       <div className="section-title-about">(ABOUT)</div>
-      <div className="vertical-lines">
+     
+
+      <div className="left-content">
+        <div className="name-container">
+          {showProfileImage && (
+            <div className="profile-image-container">
+              <img 
+                src={profilePicture} 
+                alt="Kanish Chhabra" 
+                className="profile-image"
+              />
+            </div>
+          )}
+          <h1 
+            className="name"
+            onMouseEnter={() => setShowProfileImage(true)}
+            onMouseLeave={() => setShowProfileImage(false)}
+          >
+            Kanish Chhabra
+          </h1>
+        </div>
+        
+        <p className="description">
+ I am a Software Engineer specializing in full-stack development, with expertise in Flutter (Dart), Java, Node.js, and Python. I build scalable, end-to-end applications across mobile and backend systems.
+
+With around two years of experience, I have worked with React, Flutter, .NET, and Azure. Passionate about problem-solving, I am currently exploring AI and Machine Learning.
+
+Originally from Amritsar, Punjab, I am currently based in Mumbai, India.       {/* Your full description here */}
+        </p>
+        
+        <button className="about-button">
+          Peek at my resume ?
+        </button>
+      </div>
+      
+    <div className="vertical-lines">
           {[...Array(4)].map((_, index) => (
             <div key={index} className="vertical-line">
               {/* Apply a CSS class to control animation */}
@@ -111,6 +148,10 @@ const About = ({isPaused = false}) => {
           className="image"
         />
       </div>
+      <div className="scroll-down">
+      <span>scroll down</span>
+<div className="arrow-icon-about"><RiArrowDownWideLine /></div>
+    </div>
     </div>
   );
 };
