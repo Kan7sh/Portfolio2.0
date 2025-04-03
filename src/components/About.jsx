@@ -28,11 +28,34 @@ const About = ({isPaused = false}) => {
   const [currentImage, setCurrentImage] = useState(images[0]);
   const [isHovered, setIsHovered] = useState(false);
   const [showProfileImage, setShowProfileImage] = useState(false);
-
+  const aboutRef = useRef(null);
+  const [showExperience, setShowExperience] = useState(false);
   const changeImageRandomly = () => {
     const randomIndex = Math.floor(Math.random() * images.length);
     setCurrentImage(images[randomIndex]);
   };
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (aboutRef.current) {
+        const { scrollTop } = aboutRef.current;
+        // Show experience section when scrolled down a bit
+        setShowExperience(scrollTop > 100);
+      }
+    };
+
+    if (aboutRef.current) {
+      aboutRef.current.addEventListener('scroll', handleScroll);
+    }
+
+    return () => {
+      if (aboutRef.current) {
+        aboutRef.current.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, []);
+
 
   // Start the image change interval on hover
   const handleMouseEnter = () => {
@@ -60,12 +83,59 @@ const About = ({isPaused = false}) => {
     };
   }, []);
 
+  const experiences = [
+    {
+      id: 1,
+      company: "Tech Innovators",
+      designation: "Senior Software Engineer",
+      duration: "2022 - Present",
+      image: img1,
+      details: [
+        "Led development of mobile applications using Flutter",
+        "Implemented CI/CD pipelines",
+        "Collaborated with cross-functional teams to deliver high-quality software solutions"
+      ] },
+    {
+      id: 2,
+      company: "Digital Solutions",
+      designation: "Software Developer",
+      duration: "2020 - 2022",
+      image: img2,
+      details: [
+        "Led development of mobile applications using Flutter",
+        "Implemented CI/CD pipelines",
+        "Collaborated with cross-functional teams to deliver high-quality software solutions"
+      ]},
+    {
+      id: 3,
+      company: "Web Masters",
+      designation: "Junior Developer",
+      duration: "2018 - 2020",
+      image: img3,
+      details: [
+        "Led development of mobile applications using Flutter",
+        "Implemented CI/CD pipelines",
+        "Collaborated with cross-functional teams to deliver high-quality software solutions"
+      ]},
+    {
+      id: 4,
+      company: "StartUp Ventures",
+      designation: "Intern",
+      duration: "2017 - 2018",
+      image: img4,
+      details: [
+        "Led development of mobile applications using Flutter",
+        "Implemented CI/CD pipelines",
+        "Collaborated with cross-functional teams to deliver high-quality software solutions"
+      ]}
+  ];
 
 
 
 
 
  return (
+  <div className="about-container" ref={aboutRef}>
     <div className="about-section">
       <div className="line-checks">
         {[...Array(5)].map((_, index) => (
@@ -152,6 +222,36 @@ Originally from Amritsar, Punjab, I am currently based in Mumbai, India.       {
       <span>scroll down</span>
 <div className="arrow-icon-about"><RiArrowDownWideLine /></div>
     </div>
+    </div>
+    <div className={`experience-section ${showExperience ? 'visible' : ''}`}>
+        <div className="section-title-experience">(EXPERIENCE)</div>
+        
+        <div className="experience-timeline">
+          {experiences.map((exp, index) => (
+            <div key={exp.id} className={`experience-row with-divider`}>
+              <div className="experience-image-container">
+                <div className="experience-image-flip">
+                  <div className="experience-image-front">
+                    <img src={exp.image} alt={exp.company} className="company-image" />
+                  </div>
+                  <div className="experience-image-back">
+                  <ul className="experience-details">
+    {exp.details.map((detail, i) => (
+      <li key={i}>{detail}</li>
+    ))}
+  </ul>                  </div>
+                </div>
+              </div>
+              
+              <div className="experience-info">
+                <h3 className="company-name">{exp.company}</h3>
+                <p className="company-designation">{exp.designation}</p>
+                <p className="company-duration">{exp.duration}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
