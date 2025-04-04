@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 80% 50%, #d00808,#d00808,#d00808,#d00808,#d8640a,#ea9d44,#0f0f0f,#0f0f0f,  #0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f);
+  background: radial-gradient(circle at 70% 50%, #d00808,#d00808,#d00808,#d00808,#d00808,#d8640a,#ea9d44,#0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f,  #0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f);
   position: relative;
   overflow: hidden;
 }
@@ -25,8 +25,8 @@
 }
 /* Grey Square Container */
 .image-container {
-  width: 500px; /* Adjust size as needed */
-  height: 500px; /* Adjust size as needed */
+  width: 380px; /* Adjust size as needed */
+  height: 380px; /* Adjust size as needed */
   background-color: rgb(186, 186, 186); /* Grey background */
   display: flex;
   align-items: center;
@@ -35,15 +35,15 @@
   overflow: hidden;
   z-index: 10;
   position: absolute;
-  right: 5%; /* Adjust this value to move left/right */
+  right: 18%; /* Adjust this value to move left/right */
   top: 50%;
   transform: translateY(-50%);
 }
 
 /* Image inside the container */
 .image {
-  width: 300px;
-  height: 300px;
+  width: 280px;
+  height: 280px;
   object-fit: cover; /* Ensures the image covers the container */
   transition: opacity 0.3s ease; /* Smooth transition */
 }
@@ -221,13 +221,14 @@
 .experience-section {
   width: 100%;
   min-height: 100vh;  
-  background-color: #303030;
+  background: linear-gradient(180deg,#383838,#0f0f0f,#0f0f0f,#0f0f0f,  #0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f);
+  background-color: #383838;
   color: white;
   position: relative;
   transform: translateY(100%);
   opacity: 0;
   padding-top: 40px;
-  transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+  /* transition: transform 0.8s ease-out, opacity 0.8s ease-out; */
   box-sizing: border-box;
 }
 
@@ -252,7 +253,7 @@
 }
 
 /* Add top line before first experience */
-.experience-timeline::before {
+/* .experience-timeline::before {
   content: '';
   position: absolute;
   top: -1px;
@@ -260,10 +261,10 @@
   width: 100%;
   height: 1px;
   background-color: #ffffff;
-}
+} */
 
 /* Add bottom line after last experience */
-.experience-timeline::after {
+/* .experience-timeline::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -271,16 +272,31 @@
   width: 100%;
   height: 1px;
   background-color: #ffffff;
-}
+} */
 
 .experience-row {
   display: flex;
-  align-items: center;
+  padding: 30px 40px;
   position: relative;
+  z-index: 1;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Only take half the width */
+  width: 50%; /* Take half the width */
+  height: 100%;
+  align-items: center; /* Center content vertically */
+}
+.experience-row.with-divider::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 40px;
+  right: 40px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Lines between experiences */
-.experience-row::after {
+/* .experience-row::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -288,7 +304,7 @@
   width: 100%;
   height: 1px;
   background-color: #ffffff;
-}
+} */
 
 /* Remove line after last experience */
 .experience-row:last-child::after {
@@ -296,7 +312,7 @@
 }
 
 .experience-image-container {
-  width: 300px;
+  width: 400px;
   height: 300px;
   margin-right: 40px;
   perspective: 1000px;
@@ -313,10 +329,6 @@
   transform-style: preserve-3d;
 }
 
-.experience-row:hover .experience-image-flip {
-  transform: rotateX(180deg);
-}
-
 .experience-image-front,
 .experience-image-back {
   position: absolute;
@@ -327,7 +339,7 @@
 }
 
 .experience-image-front {
-  background-color: #1a1a1a;
+  background-color: #ae0000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -335,7 +347,7 @@
 }
 
 .experience-image-back {
-  background-color: #303030;
+  background-color: #f43232;
   transform: rotateX(180deg);
   display: flex;
   align-items: center;
@@ -344,28 +356,24 @@
 
 .experience-details {
   font-family: 'IBM Plex Mono';
-  font-size: 0.9rem;
+  height: 100%;
+  font-size: 0.6rem;
   line-height: 1.6;
-  margin: 0;
-  padding-left: 20px;
-  width: 100%;
 }
 
-.experience-details li {
+/* .experience-details li {
   position: relative;
   margin-bottom: 10px;
-}
+} */
 
-.experience-details li::before {
+/* .experience-details li::before {
   content: "•";
   color: #d00808;
   font-weight: bold;
   display: inline-block;
-  width: 1em;
-  margin-left: -1em;
   position: absolute;
   left: 0;
-}
+} */
 
 .company-image {
   width: 90%;
@@ -373,9 +381,49 @@
   object-fit: contain;
   border-radius: 4px;
 }
+.experience-row-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 120px; /* Give rows a consistent height */
+  align-items: center; /* Center content vertically */
+  border-bottom: 1px solid #ffffff33; /* Optional: Add a bottom border for separation */   
+}
+
+.experience-card{
+  position: absolute;
+  left: 50%; /* Start from the middle */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for exact vertical centering */
+  width: 40%; /* Take the other half */
+  height: 120%; /* Slightly less than full height */
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  z-index: 10;
+  display: flex;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.card-image-container{
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0f0f0f;
+}
+
+.card-details{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+}
+
 
 .experience-info {
-  flex: 1;
+  align-items: start;
+  justify-items: start;
 }
 
 .company-name {
@@ -397,12 +445,12 @@
   opacity: 0.8;
 }
 
-.experience-details {
+/* .experience-details {
   font-family: 'IBM Plex Mono';
   font-size: 0.9rem;
   line-height: 1.6;
   margin: 0;
-}
+} */
 .experience-content {
   max-width: 800px;
   margin: 0 auto;
@@ -412,7 +460,7 @@
 .experience-item {
   margin-bottom: 60px;
   position: relative;
-  padding-left: 30px;
+  /* padding-left: 30px; */
   border-left: 2px solid #d00808;
 }
 
@@ -447,13 +495,13 @@
   font-family: 'IBM Plex Mono';
   font-size: 0.9rem;
   line-height: 1.6;
-  padding-left: 20px;
+  /* padding-left: 20px; */
   opacity: 0.9;
 }
-
+/* 
 .experience-description li {
   margin-bottom: 8px;
-}
+} */
 
 /* Adjust the about section to not take full viewport height */
 .about-section {

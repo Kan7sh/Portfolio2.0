@@ -26,10 +26,10 @@ const About = ({isPaused = false}) => {
   const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11,  img13, img14,img15, img16];
   const intervalRef = useRef(null);
   const [currentImage, setCurrentImage] = useState(images[0]);
-  const [isHovered, setIsHovered] = useState(false);
   const [showProfileImage, setShowProfileImage] = useState(false);
   const aboutRef = useRef(null);
   const [showExperience, setShowExperience] = useState(false);
+  const [hoveredExperience, setHoveredExperience] = useState(null);
   const changeImageRandomly = () => {
     const randomIndex = Math.floor(Math.random() * images.length);
     setCurrentImage(images[randomIndex]);
@@ -41,7 +41,7 @@ const About = ({isPaused = false}) => {
       if (aboutRef.current) {
         const { scrollTop } = aboutRef.current;
         // Show experience section when scrolled down a bit
-        setShowExperience(scrollTop > 100);
+        setShowExperience(scrollTop > 0);
       }
     };
 
@@ -224,34 +224,44 @@ Originally from Amritsar, Punjab, I am currently based in Mumbai, India.       {
     </div>
     </div>
     <div className={`experience-section ${showExperience ? 'visible' : ''}`}>
-        <div className="section-title-experience">(EXPERIENCE)</div>
-        
-        <div className="experience-timeline">
-          {experiences.map((exp, index) => (
-            <div key={exp.id} className={`experience-row with-divider`}>
-              <div className="experience-image-container">
-                <div className="experience-image-flip">
-                  <div className="experience-image-front">
-                    <img src={exp.image} alt={exp.company} className="company-image" />
-                  </div>
-                  <div className="experience-image-back">
-                  <ul className="experience-details">
-    {exp.details.map((detail, i) => (
-      <li key={i}>{detail}</li>
-    ))}
-  </ul>                  </div>
-                </div>
-              </div>
-              
-              <div className="experience-info">
-                <h3 className="company-name">{exp.company}</h3>
-                <p className="company-designation">{exp.designation}</p>
-                <p className="company-duration">{exp.duration}</p>
-              </div>
-            </div>
-          ))}
+  <div className="section-title-experience">(EXPERIENCE)</div>
+  
+  <div className="experience-timeline">
+    {experiences.map((exp, index) => (
+      <div 
+        key={exp.id} 
+        className="experience-row-container"
+        onMouseEnter={() => setHoveredExperience(exp.id)}
+        onMouseLeave={() => setHoveredExperience(null)}
+      >
+        <div className={`experience-row  with-divider`}>
+          <div className="experience-info">
+            <h3 className="company-name">{exp.company}</h3>
+            <p className="company-designation">{exp.designation}</p>
+            <p className="company-duration">{exp.duration}</p>
+          </div>
         </div>
+        
+        {hoveredExperience === exp.id && (
+          <div className="experience-card">
+            <div className="card-image-container">
+              <img src={exp.image} alt={exp.company} className="company-image" />
+            </div>
+            <div className="card-details">
+              <ul className="experience-details">
+                {exp.details.map((detail, i) => (
+                  <li key={i}>{detail}</li>
+  
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+        {/* <hr style={{ border: '1px solid #ccc', margin: '20px 0' }} /> */}
       </div>
+    ))}
+  </div>
+</div>
     </div>
   );
 };

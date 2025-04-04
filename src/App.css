@@ -19,10 +19,122 @@ body {
   transition: width 0.2s ease, height 0.2s ease; /* Smooth size transition */
 }
 
+
 /* Enlarge the cursor on hover */
 .custom-cursor.enlarge {
   width: 12px; /* Larger size */
   height: 12px;
+}
+
+/* .experience-row-container {
+  position: relative;
+  width: 100%;
+}
+
+.experience-row {
+  display: flex;
+  padding: 30px 40px;
+  position: relative;
+  z-index: 1;
+  transition: background-color 0.3s ease;
+}
+
+.experience-row.with-divider::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 40px;
+  right: 40px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.experience-row:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+} */
+
+.experience-info {
+  flex: 1;
+}
+
+.company-name {
+  font-family: 'Anton';
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #ea9d44;
+}
+
+.company-designation {
+  font-family: 'IBM Plex Mono';
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.company-duration {
+  font-family: 'IBM Plex Mono';
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+.experience-card {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 500px;
+  height: 300px;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  z-index: 10;
+  display: flex;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.company-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.card-details {
+  width: 60%;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.experience-details {
+  font-family: 'IBM Plex Mono';
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.experience-details li {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.experience-details li::before {
+  content: "•";
+  color: #d00808;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  position: absolute;
+  left: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-45%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
 }
 
 .window-container {
