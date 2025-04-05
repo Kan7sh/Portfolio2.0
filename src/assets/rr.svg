@@ -1,0 +1,28 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="circle-clip">
+      <circle cx="100" cy="100" r="95" />
+    </clipPath>
+  </defs>
+  
+  <circle cx="100" cy="100" r="95" fill="white" stroke="black" stroke-width="2" />
+  
+  <g clip-path="url(#circle-clip)">
+    <g id="earth" transform="rotate(0 100 100)">
+      <!-- Stylized continents -->
+      <path d="M80,90 C85,70 115,70 120,90 C125,110 95,130 85,110 Z" fill="black"/>
+      <path d="M60,120 C65,130 75,135 80,125 C85,115 65,105 60,120 Z" fill="black"/>
+      <path d="M130,100 C135,110 145,115 150,105 C155,95 135,85 130,100 Z" fill="black"/>
+    </g>
+  </g>
+
+  <animateTransform
+    xlink:href="#earth"
+    attributeName="transform"
+    attributeType="XML"
+    type="rotate"
+    from="0 100 100"
+    to="360 100 100"
+    dur="10s"
+    repeatCount="indefinite"/>
+</svg>

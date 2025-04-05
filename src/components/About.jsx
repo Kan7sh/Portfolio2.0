@@ -3,14 +3,16 @@ import "./css/about.css";
 import profilePicture from "../assets/profile_picture.jpg"; // Adjust the path as needed
 import { useState, useEffect, useRef } from "react";
 import { RiArrowDownWideLine } from "react-icons/ri";
-
+import experienceLottieData from '../assets/bcd.json'; // Adjust the path as needed
+import { FaEnvelope, FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa';
+import { SiLeetcode } from 'react-icons/si';
+import lottie from 'lottie-web';
+import { PiBirdFill } from "react-icons/pi";
 import img1 from "../assets/1.png";
 import img2 from "../assets/2.png";
-import img3 from "../assets/3.png";
 import img4 from "../assets/4.png";
 import img5 from "../assets/5.png";
 import img6 from "../assets/6.png";
-import img7 from "../assets/7.png";
 import img8 from "../assets/8.png";
 import img9 from "../assets/9.png";
 import img10 from "../assets/10.png";
@@ -19,11 +21,15 @@ import img13 from "../assets/13.png";
 import img14 from "../assets/14.png";
 import img15 from "../assets/15.png";
 import img16 from "../assets/16.png";
+import tcs from "../assets/tcs.png";
+import lng from "../assets/lng.jpg";
+import ridobiko from "../assets/ridobiko.png";
+import ttofl from "../assets/ttofl.jpg";
 
 
 const About = ({isPaused = false}) => {
 
-  const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11,  img13, img14,img15, img16];
+  const images = [img1, img2, img4, img5, img6, img8, img9, img10, img11,  img13, img14,img15, img16];
   const intervalRef = useRef(null);
   const [currentImage, setCurrentImage] = useState(images[0]);
   const [showProfileImage, setShowProfileImage] = useState(false);
@@ -34,13 +40,27 @@ const About = ({isPaused = false}) => {
     const randomIndex = Math.floor(Math.random() * images.length);
     setCurrentImage(images[randomIndex]);
   };
+  const experienceTitleRef = useRef(null);
+
+  useEffect(() => {
+    if (experienceTitleRef.current) {
+      const anim = lottie.loadAnimation({
+        container: experienceTitleRef.current,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        animationData: experienceLottieData, // Replace with your imported JSON
+      });
+  
+      return () => anim.destroy(); // Cleanup on unmount
+    }
+  }, []);
 
 
   useEffect(() => {
     const handleScroll = () => {
       if (aboutRef.current) {
         const { scrollTop } = aboutRef.current;
-        // Show experience section when scrolled down a bit
         setShowExperience(scrollTop > 0);
       }
     };
@@ -86,10 +106,10 @@ const About = ({isPaused = false}) => {
   const experiences = [
     {
       id: 1,
-      company: "Tech Innovators",
+      company: "Tata Consultancy Services",
       designation: "Senior Software Engineer",
       duration: "2022 - Present",
-      image: img1,
+      image: tcs,
       details: [
         "Led development of mobile applications using Flutter",
         "Implemented CI/CD pipelines",
@@ -97,10 +117,10 @@ const About = ({isPaused = false}) => {
       ] },
     {
       id: 2,
-      company: "Digital Solutions",
+      company: "L&G Consultancy",
       designation: "Software Developer",
       duration: "2020 - 2022",
-      image: img2,
+      image: lng,
       details: [
         "Led development of mobile applications using Flutter",
         "Implemented CI/CD pipelines",
@@ -108,10 +128,10 @@ const About = ({isPaused = false}) => {
       ]},
     {
       id: 3,
-      company: "Web Masters",
+      company: "TTOFL",
       designation: "Junior Developer",
       duration: "2018 - 2020",
-      image: img3,
+      image: ttofl,
       details: [
         "Led development of mobile applications using Flutter",
         "Implemented CI/CD pipelines",
@@ -119,10 +139,10 @@ const About = ({isPaused = false}) => {
       ]},
     {
       id: 4,
-      company: "StartUp Ventures",
+      company: "Ridobiko",
       designation: "Intern",
       duration: "2017 - 2018",
-      image: img4,
+      image: ridobiko,
       details: [
         "Led development of mobile applications using Flutter",
         "Implemented CI/CD pipelines",
@@ -223,8 +243,25 @@ Originally from Amritsar, Punjab, I am currently based in Mumbai, India.       {
 <div className="arrow-icon-about"><RiArrowDownWideLine /></div>
     </div>
     </div>
-    <div className={`experience-section ${showExperience ? 'visible' : ''}`}>
-  <div className="section-title-experience">(EXPERIENCE)</div>
+    <div className="section-divider">
+  <div className="binary-digits">
+    {Array.from({length: 130}).map((_, i) => (
+      <span key={i} className="binary-digit" style={{
+        animationDelay: `${Math.random() * 2}s`
+      }}>
+        {Math.random() > 0.5 ? '0' : '1'}
+      </span>
+    ))}
+  </div>
+</div>
+
+    <div className={`experience-section  visible`}>
+    <div className="experience-title-container">
+    <div className="section-title-experience">EXPERIENCE</div>
+    <div className="lottie-container" ref={experienceTitleRef}></div>
+  </div>
+  
+  {/* <div className="section-title-experience">(EXPERIENCE)</div> */}
   
   <div className="experience-timeline">
     {experiences.map((exp, index) => (
@@ -260,6 +297,65 @@ Originally from Amritsar, Punjab, I am currently based in Mumbai, India.       {
         {/* <hr style={{ border: '1px solid #ccc', margin: '20px 0' }} /> */}
       </div>
     ))}
+  </div>
+</div>
+<div className="skills-section">
+  <div className="skills-container">
+    {[
+      'Flutter', 'Dart', 'Java', 'Python', 'JavaScript', 
+      'React', 'Node.js', 'Express', 'MongoDB', 'Firebase',
+      'Git', 'CI/CD', 'Docker', 'Azure', 'AWS', 'REST APIs',
+      'GraphQL', 'Redux', 'TypeScript', 'HTML/CSS', 'UI/UX',
+      'Flutter', 'Dart', 'Java', 'Python', 'JavaScript', 
+      'React', 'Node.js', 'Express', 'MongoDB', 'Firebase',
+      'Git', 'CI/CD', 'Docker', 'Azure', 'AWS', 'REST APIs',
+      'GraphQL', 'Redux', 'TypeScript', 'HTML/CSS', 'UI/UX'
+    ].map((skill, index) => (
+      <div key={index} className="skill-item">{skill}</div>
+    ))}
+  </div>
+</div>
+
+<div className="contact-section">
+  
+  <h2 className="contact-title">GET IN TOUCH</h2>
+  
+  <div className="contact-content">
+    <div className="contact-methods">
+      <a href="mailto:your.email@example.com" className="contact-method">
+        <FaEnvelope className="contact-icon" />
+        <span className="contact-text">kanishchhabra.info@gmail.com</span>
+      </a>
+      
+      <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="contact-method">
+        <FaLinkedin className="contact-icon" />
+        <span className="contact-text">kanish-chhabra</span>
+      </a>
+      
+      <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" className="contact-method">
+        <FaTwitter className="contact-icon" />
+        <span className="contact-text">KanishChhabra</span>
+      </a>
+      
+      <a href="https://leetcode.com/yourprofile" target="_blank" rel="noopener noreferrer" className="contact-method">
+        <SiLeetcode className="contact-icon" />
+        <span className="contact-text">Kan7sh</span>
+      </a>
+      
+      <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="contact-method">
+        <FaGithub className="contact-icon" />
+        <span className="contact-text">Kan7sh</span>
+      </a>
+      
+      <div className="contact-method">
+        <PiBirdFill  className="contact-icon" />
+        <span className="contact-text">Pigeon mail (ask for my coordinates)</span>
+      </div>
+    </div>
+    
+    <p className="contact-slang">
+    "Coffee’s on me if you bring the conversation.
+    </p>
   </div>
 </div>
     </div>

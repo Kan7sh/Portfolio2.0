@@ -83,7 +83,7 @@ body {
   width: 500px;
   height: 300px;
   background-color: #1a1a1a;
-  border: 1px solid #333;
+  /* border: 1px solid #333; */
   z-index: 10;
   display: flex;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -97,34 +97,13 @@ body {
 }
 
 .card-details {
-  width: 60%;
-  padding: 30px;
-  overflow-y: auto;
+  width: 70%;
+  padding: 20px;
 }
 
-.experience-details {
-  font-family: 'IBM Plex Mono';
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin: 0;
-  padding-left: 20px;
-}
+/*  */
 
-.experience-details li {
-  position: relative;
-  margin-bottom: 10px;
-}
 
-.experience-details li::before {
-  content: "•";
-  color: #d00808;
-  font-weight: bold;
-  display: inline-block;
-  width: 1em;
-  margin-left: -1em;
-  position: absolute;
-  left: 0;
-}
 
 @keyframes fadeIn {
   from {

@@ -11,6 +11,17 @@
   overflow: hidden;
 }
 
+.experience-title-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 .section-title-about {
   font-family: 'IBM Plex Mono';
   font-weight: 400;
@@ -213,21 +224,59 @@
   overflow-y: scroll;
 
 }
+/* Binary Ruler Line Separator */
+.section-divider {
+  width: 100%;
+  height: 18px;
+  background-color: black;
+  position: relative;
+  border-top: 3.1px solid rgb(86, 86, 86);
+  border-bottom: 3.1px solid rgb(86, 86, 86)  ;
+  overflow: hidden;
+}
 
+.binary-digits {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.binary-digit {
+  color: white;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 6px;
+  opacity: 1;
+  color: white;
+  /* animation: float 3s infinite ease-in-out; */
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
 /* Experience Section */
 /* Experience Section */
 /* Experience Section */
 /* Experience Section */
 .experience-section {
   width: 100%;
-  min-height: 100vh;  
-  background: linear-gradient(180deg,#383838,#0f0f0f,#0f0f0f,#0f0f0f,  #0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f);
-  background-color: #383838;
+  /* background: linear-gradient(180deg, #0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f); */
+  background-color: #0f0f0f;
   color: white;
   position: relative;
   transform: translateY(100%);
   opacity: 0;
-  padding-top: 40px;
+  padding-top: 20px;
+  padding-bottom: 70px;
   /* transition: transform 0.8s ease-out, opacity 0.8s ease-out; */
   box-sizing: border-box;
 }
@@ -236,19 +285,22 @@
   transform: translateY(0);
   opacity: 1;
 }
-
 .section-title-experience {
-  font-family: 'IBM Plex Mono';
+  font-family: 'Anton';
   font-weight: 400;
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  font-size: 36px;
+  font-size: 46px;
+  position: relative; /* Changed from absolute */
+  top: auto; /* Reset positioning */
+  left: auto; /* Reset positioning */
+}
+
+.lottie-container {
+  width: 150px; /* Adjust based on your animation */
+  height: 150px; /* Adjust based on your animation */
 }
 
 .experience-timeline {
   max-width: 100%;
-  margin: 100px auto 0;
   position: relative;
 }
 
@@ -276,7 +328,7 @@
 
 .experience-row {
   display: flex;
-  padding: 30px 40px;
+  padding: 0px 20px;
   position: relative;
   z-index: 1;
   transition: background-color 0.3s ease;
@@ -292,7 +344,7 @@
   left: 40px;
   right: 40px;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.2);
+  /* background-color: rgba(255, 255, 255, 0.2); */
 }
 
 /* Lines between experiences */
@@ -339,7 +391,7 @@
 }
 
 .experience-image-front {
-  background-color: #ae0000;
+  /* background-color: #ae0000; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -347,7 +399,7 @@
 }
 
 .experience-image-back {
-  background-color: #f43232;
+  /* background-color: #f43232; */
   transform: rotateX(180deg);
   display: flex;
   align-items: center;
@@ -357,7 +409,9 @@
 .experience-details {
   font-family: 'IBM Plex Mono';
   height: 100%;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-align: start;
   line-height: 1.6;
 }
 
@@ -386,36 +440,38 @@
   display: flex;
   width: 100%;
   min-height: 120px; /* Give rows a consistent height */
+  background: linear-gradient(270deg, #a20606,#d8640a,#0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f,  #0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f);
   align-items: center; /* Center content vertically */
   border-bottom: 1px solid #ffffff33; /* Optional: Add a bottom border for separation */   
 }
 
 .experience-card{
   position: absolute;
-  left: 50%; /* Start from the middle */
+  left: 40%; /* Start from the middle */
   top: 50%; /* Center vertically */
   transform: translateY(-50%); /* Adjust for exact vertical centering */
-  width: 40%; /* Take the other half */
-  height: 120%; /* Slightly less than full height */
-  background-color: #1a1a1a;
-  border: 1px solid #333;
+  width: 35%; /* Take the other half */
+  height: 200%; /* Slightly less than full height */
+  background-color: #0f0f0f;
   z-index: 10;
   display: flex;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid #ffffff33;
   animation: fadeIn 0.3s ease-out;
 }
 
 .card-image-container{
-  width: 30%;
+  width: 40%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #0f0f0f;
+  background-color: #ffffff;
 }
 
 .card-details{
-  width: 40%;
+  width: 60%;
   display: flex;
+  color: #ffffff;
   flex-direction: column;
   justify-content: center; /* Center content vertically */
 }
@@ -427,22 +483,29 @@
 }
 
 .company-name {
-  font-family: 'Anton';
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-  color: #ea9d44;
+  font-family: 'IBM Plex Mono';
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0px;
+  margin-top: 30px;
 }
 
 .company-designation {
   font-family: 'IBM Plex Mono';
   font-size: 1.1rem;
-  margin-bottom: 8px;
+  font-weight: 300;
+  margin: 0px;
 }
 
 .company-duration {
   font-family: 'IBM Plex Mono';
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   opacity: 0.8;
+  font-weight: 400;
+  color: #ea9d44;
+  margin-top: 0px;
+  margin-bottom: 30px
 }
 
 /* .experience-details {
@@ -461,7 +524,7 @@
   margin-bottom: 60px;
   position: relative;
   /* padding-left: 30px; */
-  border-left: 2px solid #d00808;
+  /* border-left: 2px solid #d00808; */
 }
 
 .experience-header {
@@ -493,7 +556,7 @@
 
 .experience-description {
   font-family: 'IBM Plex Mono';
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   line-height: 1.6;
   /* padding-left: 20px; */
   opacity: 0.9;
@@ -524,3 +587,118 @@
 .name:hover {
   transform: translateY(2px);
 }
+
+/* Skills Section Divider */
+.skills-section {
+  width: 100%;
+  height: 30px;
+  background-color: white;
+  overflow: hidden;
+  position: relative;
+}
+
+.skills-container {
+  display: flex;
+  position: absolute;
+  white-space: nowrap;
+  will-change: transform;
+  animation: scrollSkills 20s linear infinite;
+}
+
+.skill-item {
+  font-family: 'IBM Plex Mono';
+  font-size: 10px;
+  color: black;
+  margin: 0 20px;
+  padding: 7px 0;
+  flex-shrink: 0;
+}
+
+@keyframes scrollSkills {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Move by half of the container width */
+  }
+}
+
+/* Contact Section */
+.contact-section {
+  width: 100%;
+  background: linear-gradient(0deg,#d8640a,#ea9d44,#0f0f0f,#0f0f0f,#0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f);
+  color: white;
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  padding: 80px 40px;
+
+}
+
+.contact-title {
+  font-family: 'Anton';
+  font-weight: 400;
+  font-size: 46px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+.contact-method {
+  display: flex;
+  align-items: center;
+  font-family: 'IBM Plex Mono';
+  transition: transform 0.3s ease;
+}
+
+.contact-method:hover {
+  transform: translateY(-5px);
+}
+
+.contact-methods a{
+  text-decoration: none;
+  cursor: none;
+}
+
+.contact-icon {
+  font-size: 24px;
+  margin-right: 15px;
+  color: #e2e2e2;
+}
+
+
+.contact-text {
+  font-size: 16px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.contact-slang {
+  font-family: 'IBM Plex Mono';
+  font-size: 18px;
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: 600px;
+}
+
+
+
+
