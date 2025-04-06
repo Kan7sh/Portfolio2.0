@@ -51,7 +51,6 @@ export default function PhotoFrameNavigation() {
   }, []);
 
   const qrColor = isFrameVisible ? "#000000" : "#ffffff";
-  const email = "kchhabra499@gmail.com";
 
   const handleAboutMeClick = () => {
     // First make the frame visible if it's not already
@@ -73,6 +72,23 @@ export default function PhotoFrameNavigation() {
     About: <About isPaused={isPaused} />,
     Projects: <Projects isPaused={isPaused} />,
   };
+
+  useEffect(() => {
+    // Handle scroll prevention when paused
+    if (isPaused) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
+    }
+
+    return () => {
+      // Cleanup - ensure scrolling is re-enabled when component unmounts
+      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
+    };
+  }, [isPaused]);
 
   const changeSection = (newSection) => {
     if (activeSection !== newSection && !transitioning) {
@@ -105,7 +121,7 @@ export default function PhotoFrameNavigation() {
   const rightNavItems = ["LinkedIn", "GitHub", "Twitter"];
 
   return (
-    <div className="window-container">
+    <div className={`window-container ${isPaused ? 'paused' : ''}`}>
       <div className="custom-cursor"></div>
       <div className="logo-container">
         <img 
@@ -136,10 +152,10 @@ export default function PhotoFrameNavigation() {
                 className="frame-nav-item"
                 href={
                   item === "LinkedIn"
-                    ? "https://linkedin.com"
+                    ? "https://www.linkedin.com/in/kanish-chhabra/"
                     : item === "GitHub"
-                    ? "https://github.com"
-                    : "https://twitter.com"
+                    ? "https://github.com/Kan7sh"
+                    : "https://x.com/KanishChhabra"
                 }
                 target="_blank"
                 rel="noopener noreferrer"

@@ -45,9 +45,13 @@
   .letter {
     font-size: 20px;
     font-weight: 700;
-    z-index: 5;
+    z-index: 20;
     display: inline-block;
     transition: font-family 0.3s ease-in-out;
+  }
+
+  .name-text{
+    z-index: 20;
   }
 
   .text-container {
@@ -110,6 +114,31 @@
     z-index: 5;
     transition: all 0.3s ease;
   }
+
+  .boxy-button.paused,
+.boxy-button.paused:hover {
+  background-color: transparent;
+  border-color: white;
+  cursor: default;
+}
+
+.boxy-button.paused .arrow-icon {
+  transform: none !important;
+}
+
+.boxy-button:not(.paused):hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #765aba;
+  cursor: none;
+}
+
+.boxy-button:not(.paused):hover .top-left {
+  transform: translate(-2px, -2px);
+}
+
+.boxy-button:not(.paused):hover .bottom-right {
+  transform: translate(2px, 2px);
+}
 
   .boxy-button:hover {
     background-color: rgba(255, 255, 255, 0.1);

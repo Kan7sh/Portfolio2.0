@@ -48,10 +48,12 @@ const Home = ({ onAboutMeClick, isPaused }) => {
   const [buttonText, setButtonText] = useState("ABOUT ME");  
 
   const handleButtonHover = () => {
+    if(isPaused) return; // Prevent hover effect if paused
     setButtonText("ABOUT ME ?");
   };
 
   const handleButtonLeave = () => {
+    if(isPaused) return; // Prevent hover effect if paused
     setButtonText("ABOUT ME");
   };
 
@@ -146,14 +148,14 @@ const Home = ({ onAboutMeClick, isPaused }) => {
       {/* Center Content */}
       <div style={{ position: "fixed", top: "25px", left: "25px", zIndex: 1000 }}>
           <QRCodeSVG
-            value={`mailto:kchhabra499@gmail.com`} // Replace with your email
+            value={`mailto:kanishchhabra.info@gmail.com`} // Replace with your email
             size={60}
             fgColor="#ffffff" // White color for QR code
             bgColor="transparent"
           />
         </div>
       <div className="center-content">
-        <div>
+        <div className="name-text">
           {word.split("").map((letter, index) => (
             <span
               key={index}
@@ -190,8 +192,9 @@ const Home = ({ onAboutMeClick, isPaused }) => {
         </div>
 
         {/* Boxy Button with Arrows */}
-        <button className="boxy-button "  
-                onMouseEnter={handleButtonHover} 
+        <button
+  className={`boxy-button ${isPaused ? 'paused' : ''}`}  
+      onMouseEnter={handleButtonHover} 
                 onMouseLeave={handleButtonLeave} 
                 onClick={handleButtonClick} >
           <GrTopCorner className="arrow-icon top-left" />

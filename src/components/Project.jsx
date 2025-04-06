@@ -2,14 +2,48 @@ import React, { useState, useEffect, useRef } from "react";
 import { LuExpand, LuArrowUpRight } from "react-icons/lu"; // Import arrow icon
 import "./css/project.css";
 import sampleProject from "../assets/project_testing.jpg";
+import redditCloneImage from "../assets/RedditClone.jpg"; // Import your image here
+import aiAlarmImage from "../assets/AIAlarm.jpg"; // Import your image here
+import imageGeniusImage from "../assets/ImageGenius.jpg"; // Import your image here
 
-const Projects = () => {
+
+const Projects = ({isPaused = false}) => {
   const [expandedBox, setExpandedBox] = useState(0); // null for no box expanded
   const [hoverTimeout, setHoverTimeout] = useState(null); // Timeout for hover delay
-  const [projectNames, setProjectNames] = useState(["PROJECT ONE", "PROJECT TWO", "PROJECT THREE"]);
+  const [projectNames, setProjectNames] = useState(["AI ALARM", "REDDIT CLONE", "IMAGE GENIUS"]);
   const [currentProjectName, setCurrentProjectName] = useState("");
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const projectBoxRefs = useRef([]); // Refs for project boxes
+
+  const projectImageList = [
+    aiAlarmImage,
+    redditCloneImage,
+    imageGeniusImage,
+  ];
+  const projectLinks = [
+  "https://drive.google.com/file/d/1P44Njcd1oVqZPe7jpTaBGz8QCb2DGiN5/view",
+  "https://drive.google.com/file/d/16FAnHzKOOdfEwPhnuQNiTrDFwAEugEaL/view",
+  "https://drive.google.com/file/d/1OZ7MHhJvsjT9qePjXSrxFSEjkdg8CvBK/view"
+  ];
+
+
+  const projectDescriptions = [
+    [
+      "User can Create a alarm with image of a specific object as input.",
+      "Alarm will only goes off when user click same object's image making him to do physical activity.",
+      "Basic alarm features - repeating days, changing ringtones.",
+    ],
+    [
+      "Create communities, search communities, add moderators,edit community profile.",
+      "Share posts ,upvote-downvote posts, comment, award posts.",
+      "State management using RiverPod, theme toggling, responsive UI.",
+    ],
+    [
+      "Generates logo using AI from OpenAI's API DALL-E.",
+      "Convert Images to PDF. Perform CRUD operations on them.",
+      "Share Documents with others in common room using Firebase cloud storage.",
+    ]
+  ];
 
   const fonts = [
     "'IBM Plex Mono', system-ui",
@@ -35,6 +69,7 @@ const Projects = () => {
   };
 
   useEffect(() => {
+
     const interval = setInterval(() => {
       const randomIndex = Math.floor(Math.random() * word.length);
       const newFonts = [...letterFonts];
@@ -47,6 +82,7 @@ const Projects = () => {
 
   // Handle hover with a 1-second delay
   const handleMouseEnter = (index) => {
+    if(isPaused) return; // Prevent hover effect if paused
     const timeout = setTimeout(() => {
       setExpandedBox(index);
       setCurrentProjectName(projectNames[index]);
@@ -56,6 +92,7 @@ const Projects = () => {
 
   // Clear timeout if mouse leaves before 1 second
   const handleMouseLeave = () => {
+    if(isPaused) return; // Prevent hover effect if paused
     if (hoverTimeout) {
       clearTimeout(hoverTimeout);
       setHoverTimeout(null);
@@ -64,6 +101,7 @@ const Projects = () => {
 
   // Track cursor position for image movement
   const handleMouseMove = (e) => {
+    if(isPaused) return; // Prevent hover effect if paused
     setCursorPosition({ x: e.clientX, y: e.clientY });
   };
 
@@ -125,29 +163,39 @@ const Projects = () => {
             onMouseLeave={handleMouseLeave}
           >
             {expandedBox === index ? (
-              <>
-                <img
-                  src={sampleProject}
-                  alt="Project"
-                  className="project-image"
-                  style={getImagePosition(index)}
-                />
-                {/* Circular Button with Arrow Icon */}
-                <a
-                  href="https://example.com" // Replace with your project link
-                  className="project-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <LuArrowUpRight size={20} /> {/* Arrow icon */}
-                </a>
-              </>
+              <div className="expanded-content">
+                <div className="project-info">
+                  <ul className="project-description">
+                    {projectDescriptions[index].map((point, i) => (
+                      <li key={i}>{point}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="project-image-container">
+                  <img
+                    src={projectImageList[index]}
+                    alt="Project"
+                    className="project-image"
+                    style={getImagePosition(index)}
+                  />
+                  <a
+                    href={projectLinks[index]}
+                    className="project-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <LuArrowUpRight size={20} />
+                  </a>
+                </div>
+              </div>
             ) : (
               <LuExpand className="react-icon" color="black" />
             )}
           </div>
         ))}
       </div>
+
+
 
       {/* Project Name Display */}
       <div className="project-name-container">

@@ -53,8 +53,8 @@
 
 /* Image inside the container */
 .image {
-  width: 280px;
-  height: 280px;
+  width: 200px;
+  height: 200px;
   object-fit: cover; /* Ensures the image covers the container */
   transition: opacity 0.3s ease; /* Smooth transition */
 }
@@ -409,7 +409,7 @@
 .experience-details {
   font-family: 'IBM Plex Mono';
   height: 100%;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 300;
   text-align: start;
   line-height: 1.6;
@@ -447,10 +447,10 @@
 
 .experience-card{
   position: absolute;
-  left: 40%; /* Start from the middle */
+  left: 30%; /* Start from the middle */
   top: 50%; /* Center vertically */
   transform: translateY(-50%); /* Adjust for exact vertical centering */
-  width: 35%; /* Take the other half */
+  width: 55%; /* Take the other half */
   height: 200%; /* Slightly less than full height */
   background-color: #0f0f0f;
   z-index: 10;
@@ -461,7 +461,7 @@
 }
 
 .card-image-container{
-  width: 40%;
+  width: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -469,7 +469,7 @@
 }
 
 .card-details{
-  width: 60%;
+  width: 70%;
   display: flex;
   color: #ffffff;
   flex-direction: column;
@@ -518,11 +518,14 @@
   max-width: 800px;
   margin: 0 auto;
   padding-top: 100px;
+  font-size: 0.3rem;
 }
 
 .experience-item {
   margin-bottom: 60px;
   position: relative;
+  font-size: 0.3rem;
+
   /* padding-left: 30px; */
   /* border-left: 2px solid #d00808; */
 }
@@ -556,7 +559,7 @@
 
 .experience-description {
   font-family: 'IBM Plex Mono';
-  font-size: 0.8rem;
+  font-size: 0.5rem;
   line-height: 1.6;
   /* padding-left: 20px; */
   opacity: 0.9;
@@ -571,6 +574,49 @@
   width: 100%;
   min-height: 100vh; /* Changed from height to min-height */
   /* ... (keep all other existing about-section styles) */
+}
+
+/* Add to about.css */
+
+/* Paused state styles */
+.paused {
+  animation-play-state: paused !important;
+}
+
+/* Scroll down arrow animation pause */
+.scroll-down.paused .arrow-icon-about {
+  animation: none !important;
+}
+
+/* Contact methods hover pause */
+.contact-method.paused:hover {
+  transform: none !important;
+}
+
+/* Skills animation pause */
+.skills-section.paused .skills-container {
+  animation-play-state: paused !important;
+}
+
+/* Profile image hover pause */
+.name.paused:hover {
+  transform: none !important;
+}
+
+/* About button pause state */
+.about-button.paused {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Image container pause state */
+.image-container.paused {
+  pointer-events: none;
+}
+
+/* Experience card hover pause */
+.experience-row-container.paused:hover .experience-card {
+  display: none;
 }
 
 /* Name styles */
@@ -621,6 +667,20 @@
   100% {
     transform: translateX(-50%); /* Move by half of the container width */
   }
+}
+
+/* Add to about.css */
+.image.paused {
+  opacity: 0.7;
+}
+
+.about-button.paused {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.experience-card.paused {
+  display: none;
 }
 
 /* Contact Section */

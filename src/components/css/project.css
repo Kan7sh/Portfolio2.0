@@ -50,23 +50,10 @@
 
 /* Bulged Corner and Circular Button */
 .project-box.expanded {
-  flex:6;
-  position: relative; /* Ensure the button is positioned relative to the box */
-  overflow: hidden; /* Hide overflow for the bulged corner effect */
+  flex:4;
+
 }
 
-.project-box.expanded::before {
-  content: "";
-  position: absolute;
-  top: -20px; /* Adjust to control the bulge size */
-  right: -20px;
-  width: 40px; /* Size of the bulge */
-  height: 40px;
-  background-color: inherit; /* Match the box background color */
-  border-radius: 50%; /* Create a circular shape */
-  clip-path: polygon(0 0, 100% 0, 100% 50%, 50% 50%, 50% 100%, 0 100%); /* Create the bulge effect */
-  z-index: 1; /* Ensure it's above the box content */
-}
 
 .project-box.expanded .project-link {
   position: absolute;
@@ -83,10 +70,12 @@
   color: rgb(255, 255, 255); /* Icon color */
   z-index: 2; /* Ensure it's above the bulge */
   transition: transform 0.3s ease-in-out;
+  cursor: none;
 }
 
 .project-box.expanded .project-link:hover {
   transform: scale(1.1); /* Slightly enlarge on hover */
+  cursor: none;
 }
 
 .project-box:not(.expanded) {
@@ -98,13 +87,62 @@
   transition: opacity 0.5s ease-in-out;
 }
 
-.project-image {
-  width: 70%;
-  height: 70%;
-  object-fit: cover;
+.expanded-content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  gap: 20px;
+}
+
+.project-info {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  font-family: 'IBM Plex Mono';
+  color: black;
+}
+
+.project-description {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-description li {
+  margin-bottom: 15px;
+  position: relative;
+  text-align: left;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.project-description li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+}
+
+.project-image-container {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+  border-radius: 10px;
+}
+
+/* .project-image {
+  object-fit: fill;
   border-radius: 10px;
   transition: opacity 0.5s ease-in-out;
-}
+} */
 
 .project-box:not(.expanded) .react-icon {
   opacity: 1;
@@ -119,7 +157,10 @@
 }
 
 .project-box.expanded .project-image {
-  opacity: 1;
+  height: 70%;
+  width: auto;
+  max-width: 80%;
+  object-fit: contain;
 }
 
 /* Project Name Container */
@@ -158,10 +199,8 @@
 }
 /* Image Movement */
 .project-image {
-  width: 70%;
   height: 70%;
   object-fit: cover;
-  border-radius: 10px;
   transition: opacity 0.5s ease-in-out, transform 0.1s ease-in-out;
 }
 

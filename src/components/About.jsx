@@ -13,7 +13,6 @@ import img2 from "../assets/2.png";
 import img4 from "../assets/4.png";
 import img5 from "../assets/5.png";
 import img6 from "../assets/6.png";
-import img8 from "../assets/8.png";
 import img9 from "../assets/9.png";
 import img10 from "../assets/10.png";
 import img11 from "../assets/11.png";
@@ -29,7 +28,7 @@ import ttofl from "../assets/ttofl.jpg";
 
 const About = ({isPaused = false}) => {
 
-  const images = [img1, img2, img4, img5, img6, img8, img9, img10, img11,  img13, img14,img15, img16];
+  const images = [img1, img2, img4, img5, img6, img9, img10, img11,  img13, img14,img15, img16];
   const intervalRef = useRef(null);
   const [currentImage, setCurrentImage] = useState(images[0]);
   const [showProfileImage, setShowProfileImage] = useState(false);
@@ -43,6 +42,7 @@ const About = ({isPaused = false}) => {
   const experienceTitleRef = useRef(null);
 
   useEffect(() => {
+    if(isPaused) return; // Prevent animation if paused
     if (experienceTitleRef.current) {
       const anim = lottie.loadAnimation({
         container: experienceTitleRef.current,
@@ -58,6 +58,7 @@ const About = ({isPaused = false}) => {
 
 
   useEffect(() => {
+    if(isPaused) return; // Prevent scroll effect if paused
     const handleScroll = () => {
       if (aboutRef.current) {
         const { scrollTop } = aboutRef.current;
@@ -76,9 +77,43 @@ const About = ({isPaused = false}) => {
     };
   }, []);
 
+  const contactMethods = [
+    {
+      icon: FaEnvelope,
+      href: "mailto:kanishchhabra.info@gmail.com",
+      text: "kanishchhabra.info@gmail.com"
+    },
+    {
+      icon: FaLinkedin,
+      href: "https://linkedin.com/in/kanish-chhabra/",
+      text: "kanish-chhabra"
+    },
+    {
+      icon: FaTwitter,
+      href: "https://twitter.com/KanishChhabra",
+      text: "KanishChhabra"
+    },
+    {
+      icon: SiLeetcode,
+      href: "https://leetcode.com/Kan7sh",
+      text: "Kan7sh"
+    },
+    {
+      icon: FaGithub,
+      href: "https://github.com/Kan7sh",
+      text: "Kan7sh"
+    },
+    {
+      icon: PiBirdFill,
+      href: "#",
+      text: "Pigeon mail (ask for my coordinates)"
+    }
+  ];
+
 
   // Start the image change interval on hover
   const handleMouseEnter = () => {
+    if(isPaused) return; // Prevent hover effect if paused
     // Change the image immediately on hover
     changeImageRandomly();
 
@@ -87,12 +122,20 @@ const About = ({isPaused = false}) => {
   };
 
   const handleMouseLeave = () => {
+    if(isPaused) return; // Prevent hover effect if paused
     // Clear the interval to stop image changes
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null; // Reset the interval reference
     }
   };
+
+  const handleExperienceHover = (id) => {
+    if (isPaused) return;
+    setHoveredExperience(id);
+  };
+
+
 
   // Cleanup the interval when the component unmounts
   useEffect(() => {
@@ -107,46 +150,46 @@ const About = ({isPaused = false}) => {
     {
       id: 1,
       company: "Tata Consultancy Services",
-      designation: "Senior Software Engineer",
-      duration: "2022 - Present",
+      designation: "System Engineer",
+      duration: "Jan 2025 - Present",
       image: tcs,
       details: [
-        "Led development of mobile applications using Flutter",
-        "Implemented CI/CD pipelines",
-        "Collaborated with cross-functional teams to deliver high-quality software solutions"
+        "Developing secure and high-performance APIs using Spring Boot and PostgreSQL for a banking project with SBI.",
+        "Tech Stack: Java, Spring Boot",
       ] },
     {
       id: 2,
       company: "L&G Consultancy",
       designation: "Software Developer",
-      duration: "2020 - 2022",
+      duration: "Jan 2024 - Jan 2025",
       image: lng,
       details: [
-        "Led development of mobile applications using Flutter",
-        "Implemented CI/CD pipelines",
-        "Collaborated with cross-functional teams to deliver high-quality software solutions"
+        "Developed an end-to-end automated mandate payment system using Azure Functions, integrating Qlink APIs for South African banks, reducing manual processing by 40% and improving transaction reliability.",
+        "Led the migration of the Order module for the Steve Madden website from .NET 4.8 to .NET 8, integrating Shopify Callback APIs, improving data consistency, and reducing response time by 30%.",
+        "Optimized the UI and performance of the company’s internal employee rating platform using React, enhancing user experience and reducing page load time by 50%.",
+        "Tech Stack: .NET, C#, Azure."
       ]},
     {
       id: 3,
       company: "TTOFL",
-      designation: "Junior Developer",
-      duration: "2018 - 2020",
+      designation: "Software Developer Intern",
+      duration: "Oct 2023 - Oct 2024",
       image: ttofl,
       details: [
-        "Led development of mobile applications using Flutter",
-        "Implemented CI/CD pipelines",
-        "Collaborated with cross-functional teams to deliver high-quality software solutions"
+        "Developed two end-to-end cross-platform mobile apps using Flutter for a car cleaning subscription service—one for customers to manage subscriptions and another for vendors to schedule and manage cleaning services.",
+        "Integrated Razorpay payment gateway, background services, and Firebase, ensuring secure transactions and seamless real-time updates across both apps.",
+        "Implemented state management using Riverpod, optimizing performance and achieving 99.9% crash-free sessions, enhancing user experience and app reliability.",
+        "Tech Stack: Flutter, Python."
       ]},
     {
       id: 4,
       company: "Ridobiko",
-      designation: "Intern",
-      duration: "2017 - 2018",
+      designation: "Flutter Developer Intern",
+      duration: "Jun 2023 - Dec 2023",
       image: ridobiko,
       details: [
-        "Led development of mobile applications using Flutter",
-        "Implemented CI/CD pipelines",
-        "Collaborated with cross-functional teams to deliver high-quality software solutions"
+        "Developed and launched 4 Flutter apps, successfully publishing them on the Play Store.",
+        "Resolved bugs and optimized performance in legacy applications, reducing crash rates by 40% and improving load times by 30%.",
       ]}
   ];
 
@@ -197,8 +240,8 @@ const About = ({isPaused = false}) => {
             </div>
           )}
           <h1 
-            className="name"
-            onMouseEnter={() => setShowProfileImage(true)}
+            className={`name ${isPaused ? 'paused' : ''}`}
+            onMouseEnter={() => isPaused? setShowProfileImage(false) :setShowProfileImage(true)}
             onMouseLeave={() => setShowProfileImage(false)}
           >
             Kanish Chhabra
@@ -213,8 +256,11 @@ With around two years of experience, I have worked with React, Flutter, .NET, an
 Originally from Amritsar, Punjab, I am currently based in Mumbai, India.       {/* Your full description here */}
         </p>
         
-        <button className="about-button">
-          Peek at my resume ?
+        <button 
+          className={`about-button ${isPaused ? 'paused' : ''}`}
+          onClick={() => window.open('https://drive.google.com/file/d/1fZJJWoA-q1HkVoUoMMK_3VhF4R2fMgNz/view', '_blank')}
+          >
+        Peek at my resume ?
         </button>
       </div>
       
@@ -238,7 +284,7 @@ Originally from Amritsar, Punjab, I am currently based in Mumbai, India.       {
           className="image"
         />
       </div>
-      <div className="scroll-down">
+      <div className={`scroll-down ${isPaused ? 'paused' : ''}`}>
       <span>scroll down</span>
 <div className="arrow-icon-about"><RiArrowDownWideLine /></div>
     </div>
@@ -268,7 +314,7 @@ Originally from Amritsar, Punjab, I am currently based in Mumbai, India.       {
       <div 
         key={exp.id} 
         className="experience-row-container"
-        onMouseEnter={() => setHoveredExperience(exp.id)}
+        onMouseEnter={() =>isPaused? setHoveredExperience(null):setHoveredExperience(exp.id)}
         onMouseLeave={() => setHoveredExperience(null)}
       >
         <div className={`experience-row  with-divider`}>
@@ -299,7 +345,7 @@ Originally from Amritsar, Punjab, I am currently based in Mumbai, India.       {
     ))}
   </div>
 </div>
-<div className="skills-section">
+<div className={`skills-section ${isPaused ? 'paused' : ''}`}>
   <div className="skills-container">
     {[
       'Flutter', 'Dart', 'Java', 'Python', 'JavaScript', 
@@ -321,40 +367,23 @@ Originally from Amritsar, Punjab, I am currently based in Mumbai, India.       {
   <h2 className="contact-title">GET IN TOUCH</h2>
   
   <div className="contact-content">
-    <div className="contact-methods">
-      <a href="mailto:your.email@example.com" className="contact-method">
-        <FaEnvelope className="contact-icon" />
-        <span className="contact-text">kanishchhabra.info@gmail.com</span>
-      </a>
-      
-      <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="contact-method">
-        <FaLinkedin className="contact-icon" />
-        <span className="contact-text">kanish-chhabra</span>
-      </a>
-      
-      <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" className="contact-method">
-        <FaTwitter className="contact-icon" />
-        <span className="contact-text">KanishChhabra</span>
-      </a>
-      
-      <a href="https://leetcode.com/yourprofile" target="_blank" rel="noopener noreferrer" className="contact-method">
-        <SiLeetcode className="contact-icon" />
-        <span className="contact-text">Kan7sh</span>
-      </a>
-      
-      <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="contact-method">
-        <FaGithub className="contact-icon" />
-        <span className="contact-text">Kan7sh</span>
-      </a>
-      
-      <div className="contact-method">
-        <PiBirdFill  className="contact-icon" />
-        <span className="contact-text">Pigeon mail (ask for my coordinates)</span>
-      </div>
-    </div>
-    
+
+  <div className="contact-methods">
+            {contactMethods.map((method, index) => (
+              <a
+                key={index}
+                href={method.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`contact-method ${isPaused ? 'paused' : ''}`}
+              >
+                <method.icon className="contact-icon" />
+                <span className="contact-text">{method.text}</span>
+              </a>
+            ))}
+          </div>
     <p className="contact-slang">
-    "Coffee’s on me if you bring the conversation.
+    Coffee’s on me if you bring the conversation.
     </p>
   </div>
 </div>
