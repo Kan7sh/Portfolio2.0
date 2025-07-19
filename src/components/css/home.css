@@ -1,213 +1,264 @@
+.name-container {
+  font-family: "IBM Plex Mono";
+  font-size: 1.5rem;
+}
 
+.home-content {
+  background: linear-gradient(
+    15deg,
+    #d00808,
+    #d00808,
+    #d00808,
+    #d8640a,
+    #ea9d44,
+    #ea9d44,
+    #0f0f0f,
+    #0f0f0f,
+    #0f0f0f,
+    #0f0f0f,
+    #0f0f0f,
+    #0f0f0f,
+    #0f0f0f,
+    #0f0f0f,
+    #0f0f0f,
+    #ea9d44
+  );
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  perspective: 1000px;
+}
 
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+.three-d-text {
+  transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg);
+  font-size: 7rem;
+  font-weight: bold;
+  color: white;
+  font-family: "Anton";
+  z-index: 5;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.1s ease-out;
+  transform-style: preserve-3d; /* Enable 3D transformations */
+}
 
-  .name-container{
-    font-family: "IBM Plex Mono";
-    font-size: 1.5rem;
-  }
+.letter {
+  font-size: 20px;
+  font-weight: 700;
+  z-index: 20;
+  display: inline-block;
+  transition: font-family 0.3s ease-in-out;
+}
 
+.name-text {
+  z-index: 20;
+}
 
-  .home-content {
-    background: linear-gradient(15deg, #d00808,#d00808,#d00808,#d8640a, #ea9d44,#ea9d44, #0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #ea9d44);
-    width: 100%;
-    height: 100vh;
-    display: flex;  
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
-    perspective: 1000px;
-  }
+.text-container {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  height: 100px;
+  overflow: hidden;
+  text-align: left;
+  background: transparent;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
 
-  .center-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    height: 100vh;
-  }
-  .three-d-text {
-    transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg);
-    font-size: 7rem;
-    font-weight: bold;
-    color: white;
-    font-family: "Anton";
-    z-index: 5;
-    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-    transition: transform 0.1s ease-out;
-    transform-style: preserve-3d; /* Enable 3D transformations */
-  }
+.text-line {
+  font-size: 10px;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 2px 0;
+  font-weight: 400;
+  font-family: "IBM Plex Mono";
+}
 
-  .letter {
-    font-size: 20px;
-    font-weight: 700;
-    z-index: 20;
-    display: inline-block;
-    transition: font-family 0.3s ease-in-out;
-  }
+.vertical-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly; /* Distribute lines evenly */
+  pointer-events: none;
+  z-index: 1; /* Ensure lines and pulses are in the background */
+}
 
-  .name-text{
-    z-index: 20;
-  }
+.vertical-line {
+  width: 0.8px;
+  height: 100%;
+  background: rgb(62, 62, 62);
+  position: relative;
+}
 
-  .text-container {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    height: 100px;
-    overflow: hidden;
-    text-align: left;
-    background: transparent;
-    border-radius: 10px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
+/* Boxy Button */
+.boxy-button {
+  position: relative;
+  width: 150px;
+  margin-top: 20px; /* Space between .about-me and the button */
+  padding: 15px 30px;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  border-radius: 5px;
+  font-family: "IBM Plex Mono";
+  font-size: 0.85rem;
+  font-weight: 400;
+  z-index: 5;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
 
-  .text-line {
-    font-size: 10px;
-    color: white;
-    white-space: nowrap;
-    overflow: hidden;
-    margin: 2px 0;
-    font-weight: 400;
-    font-family: "IBM Plex Mono";
-  }
-
-  .vertical-lines {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-evenly; /* Distribute lines evenly */
-    pointer-events: none;
-    z-index: 1; /* Ensure lines and pulses are in the background */
-  }
-
-  .vertical-line {
-    width: 0.8px;
-    height: 100%;
-    background: rgb(62, 62, 62); 
-    position: relative;
-  }
-
-  /* Boxy Button */
-  .boxy-button {
-    position: relative;
-    width: 150px;
-    margin-top: 20px; /* Space between .about-me and the button */
-    padding: 15px 30px;
-    background-color: transparent;
-    border: 2px solid white;
-    color: white;
-    border-radius: 5px;
-    font-family: "IBM Plex Mono";
-    font-size: 0.85rem;
-    font-weight: 400;
-    z-index: 5;
-    transition: all 0.3s ease;
-  }
-
-  .boxy-button.paused,
+/* .boxy-button.paused,
 .boxy-button.paused:hover {
   background-color: transparent;
   border-color: white;
   cursor: default;
+} */
+
+.boxy-button:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.boxy-button.paused .arrow-icon {
+.boxy-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.boxy-button:hover::before {
+  left: 100%;
+}
+.boxy-button.paused {
+  pointer-events: none;
+  opacity: 0.7;
+}
+.boxy-button.paused {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* .boxy-button.paused .arrow-icon {
   transform: none !important;
-}
+} */
 
-.boxy-button:not(.paused):hover {
+/* .boxy-button:not(.paused):hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-color: #765aba;
   cursor: none;
-}
+} */
 
-.boxy-button:not(.paused):hover .top-left {
+/* .boxy-button:not(.paused):hover .top-left {
   transform: translate(-2px, -2px);
 }
 
 .boxy-button:not(.paused):hover .bottom-right {
   transform: translate(2px, 2px);
-}
+} */
 
-  .boxy-button:hover {
+/* .boxy-button:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: #765aba;
     cursor: none;
-  }
+  } */
 
-  /* Arrow Icons */
-  .arrow-icon {
-    position: absolute;
-    font-size: 0.8rem;
-    color: white;
-    transition: all 0.3s ease;
-  }
+/* Arrow Icons */
+.arrow-icon {
+  position: absolute;
+  font-size: 0.8rem;
+  color: white;
+  transition: all 0.3s ease;
+}
 
-  .top-left {
-    top: 5px;
-    left: 5px;
-  }
+.top-left {
+  top: 5px;
+  left: 5px;
+}
 
-  .bottom-right {
-    bottom: 5px;
-    right: 5px;
-  }
+.bottom-right {
+  bottom: 5px;
+  right: 5px;
+}
 
-  /* Hover Effects for Icons */
-  .boxy-button:hover .top-left {
+/* Hover Effects for Icons */
+/* .boxy-button:hover .top-left {
     transform: translate(-2px,-2px);
   }
 
   .boxy-button:hover .bottom-right {
     transform: translate(2px, 2px);
-  }
-  .about-me{
-    padding-top: 0px;
-    width: 65%;
-    z-index: 5;
-    line-height: 1.8;
-    font-family: "IBM Plex Mono";
-      font-size: 0.79rem;
-      font-weight: 200;
-  }
+  } */
+.about-me {
+  padding-top: 0px;
+  width: 65%;
+  z-index: 5;
+  line-height: 1.8;
+  font-family: "IBM Plex Mono";
+  font-size: 0.79rem;
+  font-weight: 200;
+}
 
-  .pulse {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 40px;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)); /* Fading white pulse */
-    opacity: 0;
-    animation: pulse-animation 3s infinite;
-  }
+.pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0)
+  ); /* Fading white pulse */
+  opacity: 0;
+  animation: pulse-animation 3s infinite;
+}
 
-  /* Delay pulses so they run one after another */
-  .vertical-line:nth-child(1) .pulse {
-    animation-delay: 0s;
-  }
-  .vertical-line:nth-child(2) .pulse {
-    animation-delay: 1s;
-  }
-  .vertical-line:nth-child(3) .pulse {
-    animation-delay: 0.5s;
-  }
-  .vertical-line:nth-child(4) .pulse {
-    animation-delay: 1.5s;
-  }
+/* Delay pulses so they run one after another */
+.vertical-line:nth-child(1) .pulse {
+  animation-delay: 0s;
+}
+.vertical-line:nth-child(2) .pulse {
+  animation-delay: 1s;
+}
+.vertical-line:nth-child(3) .pulse {
+  animation-delay: 0.5s;
+}
+.vertical-line:nth-child(4) .pulse {
+  animation-delay: 1.5s;
+}
 
-  /* Add this to your home.css file */
+/* Add this to your home.css file */
 
 /* Animation pause class */
 .paused {
@@ -244,23 +295,23 @@
 
 /* Make this change to App.css or the main CSS file to handle all animations */
 
-  @keyframes pulse-animation {
-    0% {
-      top: 0;
-      opacity: 1;
-    }
-    100% {
-      top: 100%;
-      opacity: 0;
-    }
+@keyframes pulse-animation {
+  0% {
+    top: 0;
+    opacity: 1;
   }
-
-  @keyframes blink-caret {
-    from, to {
-      border-right-color: transparent;
-    }
-    50% {
-      border-right-color: white;
-    }
+  100% {
+    top: 100%;
+    opacity: 0;
   }
+}
 
+@keyframes blink-caret {
+  from,
+  to {
+    border-right-color: transparent;
+  }
+  50% {
+    border-right-color: white;
+  }
+}

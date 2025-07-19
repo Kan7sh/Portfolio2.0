@@ -33,7 +33,7 @@ const Home = ({ onAboutMeClick, isPaused }) => {
   useEffect(() => {
     // Only run this effect if animations are not paused
     if (isPaused) return;
-    
+
     const interval = setInterval(() => {
       const randomIndex = Math.floor(Math.random() * word.length);
       const newFonts = [...letterFonts];
@@ -45,15 +45,15 @@ const Home = ({ onAboutMeClick, isPaused }) => {
   }, [letterFonts, isPaused]); // Add isPaused to dependency array
 
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
-  const [buttonText, setButtonText] = useState("ABOUT ME");  
+  const [buttonText, setButtonText] = useState("ABOUT ME");
 
   const handleButtonHover = () => {
-    if(isPaused) return; // Prevent hover effect if paused
+    if (isPaused) return; // Prevent hover effect if paused
     setButtonText("ABOUT ME ?");
   };
 
   const handleButtonLeave = () => {
-    if(isPaused) return; // Prevent hover effect if paused
+    if (isPaused) return; // Prevent hover effect if paused
     setButtonText("ABOUT ME");
   };
 
@@ -66,7 +66,7 @@ const Home = ({ onAboutMeClick, isPaused }) => {
   const handleMouseMove = (e) => {
     // Only update rotation if not paused
     if (isPaused) return;
-    
+
     const { clientX, clientY } = e;
     const { innerWidth, innerHeight } = window;
 
@@ -87,7 +87,7 @@ const Home = ({ onAboutMeClick, isPaused }) => {
     "debugging...",
     "Lots of bugs",
     "Loading...",
-    "Go Grab a Coffee", 
+    "Go Grab a Coffee",
     "Making something to attract you",
     "Running...",
     "This UI took a lot of time",
@@ -114,7 +114,7 @@ const Home = ({ onAboutMeClick, isPaused }) => {
   useEffect(() => {
     // Skip this effect when animations are paused
     if (isPaused) return;
-    
+
     let timer;
     if (isTyping) {
       timer = setTimeout(() => {
@@ -146,14 +146,16 @@ const Home = ({ onAboutMeClick, isPaused }) => {
       {/* Logo Container */}
 
       {/* Center Content */}
-      <div style={{ position: "fixed", top: "25px", left: "25px", zIndex: 1000 }}>
-          <QRCodeSVG
-            value={`mailto:kanishchhabra.info@gmail.com`} // Replace with your email
-            size={60}
-            fgColor="#ffffff" // White color for QR code
-            bgColor="transparent"
-          />
-        </div>
+      <div
+        style={{ position: "fixed", top: "25px", left: "25px", zIndex: 1000 }}
+      >
+        <QRCodeSVG
+          value={`mailto:kanishchhabra.info@gmail.com`} // Replace with your email
+          size={70}
+          fgColor="#ffffff" // White color for QR code
+          bgColor="transparent"
+        />
+      </div>
       <div className="center-content">
         <div className="name-text">
           {word.split("").map((letter, index) => (
@@ -183,20 +185,24 @@ const Home = ({ onAboutMeClick, isPaused }) => {
           {[...Array(4)].map((_, index) => (
             <div key={index} className="vertical-line">
               {/* Apply a CSS class to control animation */}
-              <div className={`pulse ${isPaused ? 'paused' : ''}`}></div>
+              <div className={`pulse ${isPaused ? "paused" : ""}`}></div>
             </div>
           ))}
         </div>
         <div className="about-me">
-          As a software developer, I thrive on solving complex problems, crafting seamless user experiences, and transforming ideas into reality through clean, efficient code. Every line I write is a fusion of logic, design, and boundless creativity.
+          As a software developer, I thrive on solving complex problems,
+          crafting seamless user experiences, and transforming ideas into
+          reality through clean, efficient code. Every line I write is a fusion
+          of logic, design, and boundless creativity.
         </div>
 
         {/* Boxy Button with Arrows */}
         <button
-  className={`boxy-button ${isPaused ? 'paused' : ''}`}  
-      onMouseEnter={handleButtonHover} 
-                onMouseLeave={handleButtonLeave} 
-                onClick={handleButtonClick} >
+          className={`boxy-button ${isPaused ? "paused" : ""}`}
+          onMouseEnter={handleButtonHover}
+          onMouseLeave={handleButtonLeave}
+          onClick={handleButtonClick}
+        >
           <GrTopCorner className="arrow-icon top-left" />
           <GrBottomCorner className="arrow-icon bottom-right" />
           {buttonText}
