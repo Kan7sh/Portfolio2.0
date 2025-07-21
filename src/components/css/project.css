@@ -19,7 +19,8 @@
     #0f0f0f,
     #0f0f0f,
     #0f0f0f,
-    #0f0f0f,
+    #432707,
+    #79460b,
     #b16610,
     #d8640a,
     #d08d09
@@ -98,7 +99,8 @@
 
 .project-link-icon {
   animation: bounce2 3s infinite;
-  size: 20px;
+  width:  20px;
+  height: 20px;
 }
 
 @keyframes bounce2 {
@@ -323,7 +325,7 @@
 @media (max-width: 600px) {
   .project-box-container {
     flex-direction: column;
-    height: 70%;
+    height: 67%;
   }
 
   .expanded-content {
@@ -355,18 +357,25 @@
   }
 
   .project-box.expanded .project-link {
-      width: 35px;
-  height: 35px;
+    width: 35px;
+    height: 35px;
   }
 
-  
-.project-box.expanded {
-  flex: 4;
-  padding: 12px 0px;
-}
+  .project-box.expanded {
+    flex: 4;
+    padding: 12px 0px;
+  }
 
-.section-title{
-  font-size: 25px;
-  left: 38%;
-}
+  .section-title {
+    font-size: 25px;
+    left: 38%;
+  }
+
+  .project-name {
+    font-size: 22px;
+  }
+
+  .project-name-container {
+    bottom: 45px;
+  }
 }

@@ -230,7 +230,6 @@ const About = ({ isPaused = false }) => {
       <div className={`experience-section  visible`}>
         <div className="experience-title-container">
           <div className="section-title-experience">EXPERIENCE</div>
-          {/* <div className="lottie-container" ref={experienceTitleRef}></div> */}
         </div>
 
         <div className="experience-timeline">
