@@ -1,7 +1,6 @@
 import React from "react";
 import { QRCodeSVG } from "qrcode.react"; 
 const QRComponent = ({ email, color }) => {
-  // Generate the email link
   const emailLink = `mailto:${email}`;
 
   return (

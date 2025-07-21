@@ -6,14 +6,15 @@
 .home-content {
   background: linear-gradient(
     15deg,
-    #d00808,
-    #d00808,
-    #d00808,
-    #d8640a,
-    #ea9d44,
-    #ea9d44,
-    #0f0f0f,
-    #0f0f0f,
+    #950505,
+    #9e0404,
+    #9c0505,
+    #b95408,
+    #d28a36,
+    #cf8733,
+    #83521a,
+    #5a3913,
+    #2f1d09,
     #0f0f0f,
     #0f0f0f,
     #0f0f0f,
@@ -46,18 +47,18 @@
 }
 .three-d-text {
   transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg);
-  font-size: 7rem;
+  font-size: 120px;
   font-weight: bold;
   color: white;
   font-family: "Anton";
   z-index: 5;
   text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
   transition: transform 0.1s ease-out;
-  transform-style: preserve-3d; /* Enable 3D transformations */
+  transform-style: preserve-3d;
 }
 
 .letter {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 700;
   z-index: 20;
   display: inline-block;
@@ -100,9 +101,9 @@
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: space-evenly; /* Distribute lines evenly */
+  justify-content: space-evenly;
   pointer-events: none;
-  z-index: 1; /* Ensure lines and pulses are in the background */
+  z-index: 1;
 }
 
 .vertical-line {
@@ -112,11 +113,11 @@
   position: relative;
 }
 
-/* Boxy Button */
 .boxy-button {
+  cursor: none;
   position: relative;
   width: 150px;
-  margin-top: 20px; /* Space between .about-me and the button */
+  margin-top: 20px;
   padding: 15px 30px;
   background-color: transparent;
   border: 2px solid white;
@@ -129,13 +130,6 @@
   transition: all 0.3s ease;
   overflow: hidden;
 }
-
-/* .boxy-button.paused,
-.boxy-button.paused:hover {
-  background-color: transparent;
-  border-color: white;
-  cursor: default;
-} */
 
 .boxy-button:hover {
   background: rgba(255, 255, 255, 0.1);
@@ -160,40 +154,11 @@
 .boxy-button:hover::before {
   left: 100%;
 }
+
 .boxy-button.paused {
-  pointer-events: none;
-  opacity: 0.7;
-}
-.boxy-button.paused {
-  pointer-events: none;
   opacity: 0.7;
 }
 
-/* .boxy-button.paused .arrow-icon {
-  transform: none !important;
-} */
-
-/* .boxy-button:not(.paused):hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: #765aba;
-  cursor: none;
-} */
-
-/* .boxy-button:not(.paused):hover .top-left {
-  transform: translate(-2px, -2px);
-}
-
-.boxy-button:not(.paused):hover .bottom-right {
-  transform: translate(2px, 2px);
-} */
-
-/* .boxy-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: #765aba;
-    cursor: none;
-  } */
-
-/* Arrow Icons */
 .arrow-icon {
   position: absolute;
   font-size: 0.8rem;
@@ -211,14 +176,6 @@
   right: 5px;
 }
 
-/* Hover Effects for Icons */
-/* .boxy-button:hover .top-left {
-    transform: translate(-2px,-2px);
-  }
-
-  .boxy-button:hover .bottom-right {
-    transform: translate(2px, 2px);
-  } */
 .about-me {
   padding-top: 0px;
   width: 65%;
@@ -239,12 +196,11 @@
     to bottom,
     rgba(255, 255, 255, 0.8),
     rgba(255, 255, 255, 0)
-  ); /* Fading white pulse */
+  );
   opacity: 0;
   animation: pulse-animation 3s infinite;
 }
 
-/* Delay pulses so they run one after another */
 .vertical-line:nth-child(1) .pulse {
   animation-delay: 0s;
 }
@@ -258,25 +214,19 @@
   animation-delay: 1.5s;
 }
 
-/* Add this to your home.css file */
-
-/* Animation pause class */
 .paused {
   animation-play-state: paused !important;
 }
 
-/* This applies to all animations when frame is visible */
 .frame-visible .main-window .pulse,
 .frame-visible .main-window .typing::after {
   animation-play-state: paused !important;
 }
 
-/* Add this to ensure cursor blink is paused too */
 .frame-visible .main-window .typing {
   animation: none !important;
 }
 
-/* Modify the pulse animation to respect paused state */
 @keyframes pulse-animation {
   0% {
     top: 0;
@@ -288,12 +238,9 @@
   }
 }
 
-/* Add this to the existing CSS */
 .pulse.paused {
   animation-play-state: paused !important;
 }
-
-/* Make this change to App.css or the main CSS file to handle all animations */
 
 @keyframes pulse-animation {
   0% {
@@ -313,5 +260,31 @@
   }
   50% {
     border-right-color: white;
+  }
+}
+
+@media (max-width: 600px) {
+  .qr-code-container {
+    display: none !important;
+  }
+
+  .text-container {
+    display: none !important;
+  }
+
+  .about-me {
+    font-size: 0.59rem;
+  }
+
+  .three-d-text {
+    font-size: 45px;
+  }
+
+  .vertical-lines{
+    display: none;
+  }
+
+  .letter {
+    font-size: 15px;
   }
 }

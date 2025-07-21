@@ -1,4 +1,3 @@
-import React from "react";
 import { SlControlPause } from "react-icons/sl";
 import { SlControlPlay } from "react-icons/sl";
 

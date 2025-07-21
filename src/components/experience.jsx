@@ -1,5 +1,3 @@
-// components/Experience.js
-import React from "react";
 import "./css/experience.css";
 
 const Experience = () => {

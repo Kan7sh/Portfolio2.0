@@ -28,35 +28,6 @@
     #0f0f0f,
     #0f0f0f
   );
-
-  /* background: radial-gradient(
-    circle at 70% 50%,
-    #d00808,
-    #d00808,
-    #d00808,
-    #d00808,
-    #d00808,
-    #d8640a,
-    #ea9d44,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f,
-    #0f0f0f
-  ); */
   position: relative;
   overflow: hidden;
 }
@@ -98,11 +69,10 @@
 .about-container::-webkit-scrollbar {
   display: none;
 }
-/* Grey Square Container */
 .image-container {
-  width: 380px; /* Adjust size as needed */
-  height: 380px; /* Adjust size as needed */
-  background-color: rgb(186, 186, 186); /* Grey background */
+  width: 380px;
+  height: 380px;
+  background-color: rgb(186, 186, 186);
   display: flex;
   align-items: center;
   border-radius: 50%;
@@ -110,20 +80,18 @@
   overflow: hidden;
   z-index: 10;
   position: absolute;
-  right: 18%; /* Adjust this value to move left/right */
+  right: 18%;
   top: 50%;
   transform: translateY(-50%);
 }
 
-/* Image inside the container */
 .image {
   width: 200px;
   height: 200px;
-  object-fit: cover; /* Ensures the image covers the container */
-  transition: opacity 0.3s ease; /* Smooth transition */
+  object-fit: cover;
+  transition: opacity 0.3s ease;
 }
 
-/* Scroll down indicator */
 .scroll-down {
   position: absolute;
   bottom: 20px;
@@ -162,7 +130,6 @@
   }
 }
 
-/* Left content styles */
 .left-content {
   position: absolute;
   left: 6%;
@@ -193,7 +160,7 @@
 .about-button {
   position: absolute;
   bottom: 40px;
-  right:60px;
+  right: 60px;
   font-family: "IBM Plex Mono";
   background: transparent;
   color: white;
@@ -230,17 +197,12 @@
   left: 100%;
 }
 
-/* Profile image styles */
 .profile-image-container {
   position: absolute;
   left: 100px;
   top: 100px;
   width: 400px;
   display: flex;
-  /* display: flex;
-  justify-content: center;
-  margin-bottom: 20px; 
-  z-index: 11; */
 }
 
 .profile-image {
@@ -252,7 +214,6 @@
   animation: fadeInDown 0.4s ease-out both;
 }
 
-/* Animations */
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -275,7 +236,6 @@
   }
 }
 
-/* Animation classes */
 .profile-image-container.entering {
   animation: fadeInDown 0.4s ease-out both;
 }
@@ -284,7 +244,6 @@
   animation: fadeOutUp 0.4s ease-in both;
 }
 
-/* Container for both sections */
 .about-container {
   width: 100%;
   height: 100vh;
@@ -292,11 +251,10 @@
   overflow-y: auto;
   scroll-behavior: smooth;
   position: relative;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   overflow-y: scroll;
 }
-/* Binary Ruler Line Separator */
 .section-divider {
   width: 100%;
   height: 18px;
@@ -324,7 +282,6 @@
   font-size: 6px;
   opacity: 1;
   color: white;
-  /* animation: float 3s infinite ease-in-out; */
 }
 
 @keyframes float {
@@ -336,13 +293,9 @@
     transform: translateY(5px);
   }
 }
-/* Experience Section */
-/* Experience Section */
-/* Experience Section */
-/* Experience Section */
+
 .experience-section {
   width: 100%;
-  /* background: linear-gradient(180deg, #0f0f0f,#0f0f0f,#0f0f0f,#0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f, #0f0f0f); */
   background-color: #0f0f0f;
   color: white;
   position: relative;
@@ -350,7 +303,6 @@
   opacity: 0;
   padding-top: 20px;
   padding-bottom: 70px;
-  /* transition: transform 0.8s ease-out, opacity 0.8s ease-out; */
   box-sizing: border-box;
 }
 
@@ -362,14 +314,12 @@
   font-family: "Anton";
   font-weight: 400;
   font-size: 46px;
-  position: relative; /* Changed from absolute */
-  top: auto; /* Reset positioning */
-  left: auto; /* Reset positioning */
+  position: relative;
 }
 
 .lottie-container {
-  width: 150px; /* Adjust based on your animation */
-  height: 150px; /* Adjust based on your animation */
+  width: 150px;
+  height: 150px;
 }
 
 .experience-timeline {
@@ -377,38 +327,16 @@
   position: relative;
 }
 
-/* Add top line before first experience */
-/* .experience-timeline::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: #ffffff;
-} */
-
-/* Add bottom line after last experience */
-/* .experience-timeline::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: #ffffff;
-} */
-
 .experience-row {
   display: flex;
   padding: 0px 20px;
   position: relative;
   z-index: 1;
   transition: background-color 0.3s ease;
-  width: 100%; /* Only take half the width */
-  width: 50%; /* Take half the width */
+  width: 100%;
+  width: 50%;
   height: 100%;
-  align-items: center; /* Center content vertically */
+  align-items: center;
 }
 .experience-row.with-divider::after {
   content: "";
@@ -417,21 +345,7 @@
   left: 40px;
   right: 40px;
   height: 1px;
-  /* background-color: rgba(255, 255, 255, 0.2); */
 }
-
-/* Lines between experiences */
-/* .experience-row::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background-color: #ffffff;
-} */
-
-/* Remove line after last experience */
 .experience-row:last-child::after {
   display: none;
 }
@@ -443,8 +357,6 @@
   perspective: 1000px;
   flex-shrink: 0;
 }
-
-/* Rest of your existing styles... */
 
 .experience-image-flip {
   position: relative;
@@ -464,7 +376,6 @@
 }
 
 .experience-image-front {
-  /* background-color: #ae0000; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -472,7 +383,6 @@
 }
 
 .experience-image-back {
-  /* background-color: #f43232; */
   transform: rotateX(180deg);
   display: flex;
   align-items: center;
@@ -488,20 +398,6 @@
   line-height: 1.6;
 }
 
-/* .experience-details li {
-  position: relative;
-  margin-bottom: 10px;
-} */
-
-/* .experience-details li::before {
-  content: "•";
-  color: #d00808;
-  font-weight: bold;
-  display: inline-block;
-  position: absolute;
-  left: 0;
-} */
-
 .company-image {
   width: 90%;
   height: 90%;
@@ -512,7 +408,7 @@
   position: relative;
   display: flex;
   width: 100%;
-  min-height: 120px; /* Give rows a consistent height */
+  min-height: 120px;
   background: linear-gradient(
     270deg,
     #a20606,
@@ -537,17 +433,17 @@
     #0f0f0f,
     #0f0f0f
   );
-  align-items: center; /* Center content vertically */
-  border-bottom: 1px solid #ffffff33; /* Optional: Add a bottom border for separation */
+  align-items: center;
+  border-bottom: 1px solid #ffffff33;
 }
 
 .experience-card {
   position: absolute;
-  left: 30%; /* Start from the middle */
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust for exact vertical centering */
-  width: 55%; /* Take the other half */
-  height: 200%; /* Slightly less than full height */
+  left: 30%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 55%;
+  height: 200%;
   background-color: #0f0f0f;
   z-index: 10;
   display: flex;
@@ -569,7 +465,7 @@
   display: flex;
   color: #ffffff;
   flex-direction: column;
-  justify-content: center; /* Center content vertically */
+  justify-content: center;
 }
 
 .experience-info {
@@ -603,12 +499,6 @@
   margin-bottom: 30px;
 }
 
-/* .experience-details {
-  font-family: 'IBM Plex Mono';
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin: 0;
-} */
 .experience-content {
   max-width: 800px;
   margin: 0 auto;
@@ -620,9 +510,6 @@
   margin-bottom: 60px;
   position: relative;
   font-size: 0.3rem;
-
-  /* padding-left: 30px; */
-  /* border-left: 2px solid #d00808; */
 }
 
 .experience-header {
@@ -656,18 +543,11 @@
   font-family: "IBM Plex Mono";
   font-size: 0.5rem;
   line-height: 1.6;
-  /* padding-left: 20px; */
   opacity: 0.9;
 }
-/* 
-.experience-description li {
-  margin-bottom: 8px;
-} */
 
-/* Adjust the about section to not take full viewport height */
 .about-section {
-  min-height: 100vh; /* Changed from height to min-height */
-  /* ... (keep all other existing about-section styles) */
+  min-height: 100vh;
 }
 
 .about-description-section {
@@ -678,50 +558,39 @@
   align-items: start;
 }
 
-/* Add to about.css */
-
-/* Paused state styles */
 .paused {
   animation-play-state: paused !important;
 }
 
-/* Scroll down arrow animation pause */
 .scroll-down.paused .arrow-icon-about {
   animation: none !important;
 }
 
-/* Contact methods hover pause */
 .contact-method.paused:hover {
   transform: none !important;
 }
 
-/* Skills animation pause */
 .skills-section.paused .skills-container {
   animation-play-state: paused !important;
 }
 
-/* Profile image hover pause */
 .name.paused:hover {
   transform: none !important;
 }
 
-/* About button pause state */
 .about-button.paused {
   pointer-events: none;
   opacity: 0.7;
 }
 
-/* Image container pause state */
 .image-container.paused {
   pointer-events: none;
 }
 
-/* Experience card hover pause */
 .experience-row-container.paused:hover .experience-card {
   display: none;
 }
 
-/* Name styles */
 .name {
   font-family: "Anton";
   font-size: 2.5rem;
@@ -736,7 +605,6 @@
   transform: translateY(2px);
 }
 
-/* Skills Section Divider */
 .skills-section {
   width: 100%;
   height: 30px;
@@ -767,11 +635,10 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%); /* Move by half of the container width */
+    transform: translateX(-50%);
   }
 }
 
-/* Add to about.css */
 .image.paused {
   opacity: 0.7;
 }
@@ -785,7 +652,6 @@
   display: none;
 }
 
-/* Contact Section */
 .contact-section {
   width: 100%;
   background: linear-gradient(
@@ -867,4 +733,93 @@
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   max-width: 600px;
+}
+
+  @media (max-width: 600px) {
+  .rocketImg {
+    width: 300px;
+    /* align-self: center; */
+  }
+
+  .name-container {
+    margin: 0px;
+    align-self: center;
+  }
+
+  .description {
+    width: 270px;
+    font-size: 0.63rem;
+    margin: 0px;
+  }
+
+  .about-section {
+    align-items: center;
+  }
+
+  .scroll-down {
+    font-size: 8px;
+    bottom: 5px;
+  }
+
+  .binary-digit {
+    font-size: 10px;
+  }
+
+  .experience-title-container {
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+  }
+
+  .about-button {
+    align-self: center;
+    bottom: 80px;
+  }
+
+  .about-description-section {
+    padding: 0px;
+  }
+
+  .company-name {
+    width: 250px;
+    text-align: left;
+    font-size: 0.8rem;
+  }
+
+  .company-designation {
+    align-self: start;
+    font-size: 0.8rem;
+  }
+
+  .experience-details {
+    font-size: 0.53rem;
+  }
+
+  .experience-card {
+    width: 80%;
+    height: 250%;
+    left: 8%;
+  }
+
+  .card-details {
+    width: 95%;
+  }
+
+  .contact-section {
+    flex-direction: column;
+  }
+  .contact-methods {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .contact-method {
+    align-items: start;
+    justify-content: left;
+    justify-items: left;
+    align-content: start;
+    align-self: start;
+    text-align: left;
+  }
+  ul{
+    padding-inline-start: 5px;
+  }
 }

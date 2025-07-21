@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./css/home.css";
-import logoWhite from "../assets/logo_white.png"; // Adjust the path as needed
+import logoWhite from "../assets/logo_white.png";
 import { GrBottomCorner, GrTopCorner } from "react-icons/gr";
-import { QRCodeSVG } from "qrcode.react"; // Import QRCodeSVG
+import { QRCodeSVG } from "qrcode.react";
 
 const Home = ({ onAboutMeClick, isPaused }) => {
   const fonts = [
@@ -31,7 +31,6 @@ const Home = ({ onAboutMeClick, isPaused }) => {
   };
 
   useEffect(() => {
-    // Only run this effect if animations are not paused
     if (isPaused) return;
 
     const interval = setInterval(() => {
@@ -42,18 +41,18 @@ const Home = ({ onAboutMeClick, isPaused }) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [letterFonts, isPaused]); // Add isPaused to dependency array
+  }, [letterFonts, isPaused]);
 
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [buttonText, setButtonText] = useState("ABOUT ME");
 
   const handleButtonHover = () => {
-    if (isPaused) return; // Prevent hover effect if paused
+    if (isPaused) return;
     setButtonText("ABOUT ME ?");
   };
 
   const handleButtonLeave = () => {
-    if (isPaused) return; // Prevent hover effect if paused
+    if (isPaused) return;
     setButtonText("ABOUT ME");
   };
 
@@ -64,7 +63,6 @@ const Home = ({ onAboutMeClick, isPaused }) => {
   };
 
   const handleMouseMove = (e) => {
-    // Only update rotation if not paused
     if (isPaused) return;
 
     const { clientX, clientY } = e;
@@ -79,7 +77,7 @@ const Home = ({ onAboutMeClick, isPaused }) => {
   useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [handleMouseMove]); // Add handleMouseMove to dependency array
+  }, [handleMouseMove]);
 
   const textLines = [
     "Please wait...",
@@ -112,7 +110,6 @@ const Home = ({ onAboutMeClick, isPaused }) => {
   const [isTyping, setIsTyping] = useState(true);
 
   useEffect(() => {
-    // Skip this effect when animations are paused
     if (isPaused) return;
 
     let timer;
@@ -139,20 +136,18 @@ const Home = ({ onAboutMeClick, isPaused }) => {
       }, 100);
     }
     return () => clearTimeout(timer);
-  }, [currentLineIndex, displayText, isTyping, textLines, isPaused]); // Add isPaused to dependency array
+  }, [currentLineIndex, displayText, isTyping, textLines, isPaused]);
 
   return (
     <div className="home-content">
-      {/* Logo Container */}
-
-      {/* Center Content */}
       <div
+        className="qr-code-container"
         style={{ position: "fixed", top: "25px", left: "25px", zIndex: 1000 }}
       >
         <QRCodeSVG
-          value={`mailto:kanishchhabra.info@gmail.com`} // Replace with your email
+          value={`mailto:kanishchhabra.info@gmail.com`}
           size={70}
-          fgColor="#ffffff" // White color for QR code
+          fgColor="#ffffff"
           bgColor="transparent"
         />
       </div>
@@ -184,7 +179,6 @@ const Home = ({ onAboutMeClick, isPaused }) => {
         <div className="vertical-lines">
           {[...Array(4)].map((_, index) => (
             <div key={index} className="vertical-line">
-              {/* Apply a CSS class to control animation */}
               <div className={`pulse ${isPaused ? "paused" : ""}`}></div>
             </div>
           ))}
@@ -196,7 +190,6 @@ const Home = ({ onAboutMeClick, isPaused }) => {
           of logic, design, and boundless creativity.
         </div>
 
-        {/* Boxy Button with Arrows */}
         <button
           className={`boxy-button ${isPaused ? "paused" : ""}`}
           onMouseEnter={handleButtonHover}
@@ -209,7 +202,6 @@ const Home = ({ onAboutMeClick, isPaused }) => {
         </button>
       </div>
 
-      {/* Text Container */}
       <div className="text-container">
         {visibleLines.map((line, index) => (
           <div key={index} className="text-line">

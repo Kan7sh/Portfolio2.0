@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import { LuExpand, LuArrowUpRight } from "react-icons/lu"; // Import arrow icon
+import { LuExpand, LuArrowUpRight } from "react-icons/lu";
 import "./css/project.css";
-import sampleProject from "../assets/project_testing.jpg";
-import redditCloneImage from "../assets/RedditClone.jpg"; // Import your image here
-import aiAlarmImage from "../assets/AIAlarm.jpg"; // Import your image here
-import imageGeniusImage from "../assets/ImageGenius.jpg"; // Import your image here
+import redditCloneImage from "../assets/RedditClone.jpg";
+import aiAlarmImage from "../assets/AIAlarm.jpg";
+import imageGeniusImage from "../assets/ImageGenius.jpg";
 
 const Projects = ({ isPaused = false }) => {
-  const [expandedBox, setExpandedBox] = useState(0); // null for no box expanded
-  const [hoverTimeout, setHoverTimeout] = useState(null); // Timeout for hover delay
+  const [expandedBox, setExpandedBox] = useState(0);
+  const [hoverTimeout, setHoverTimeout] = useState(null);
   const [projectNames, setProjectNames] = useState([
     "AI ALARM",
     "REDDIT CLONE",
@@ -16,8 +15,7 @@ const Projects = ({ isPaused = false }) => {
   ]);
   const [currentProjectName, setCurrentProjectName] = useState("");
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-  const projectBoxRefs = useRef([]); // Refs for project boxes
-
+  const projectBoxRefs = useRef([]);
   const projectImageList = [aiAlarmImage, redditCloneImage, imageGeniusImage];
   const projectLinks = [
     "https://drive.google.com/file/d/1P44Njcd1oVqZPe7jpTaBGz8QCb2DGiN5/view",
@@ -79,9 +77,8 @@ const Projects = ({ isPaused = false }) => {
     return () => clearInterval(interval);
   }, [letterFonts]);
 
-  // Handle hover with a 1-second delay
   const handleMouseEnter = (index) => {
-    if (isPaused) return; // Prevent hover effect if paused
+    if (isPaused) return;
     const timeout = setTimeout(() => {
       setExpandedBox(index);
       setCurrentProjectName(projectNames[index]);
@@ -89,22 +86,19 @@ const Projects = ({ isPaused = false }) => {
     setHoverTimeout(timeout);
   };
 
-  // Clear timeout if mouse leaves before 1 second
   const handleMouseLeave = () => {
-    if (isPaused) return; // Prevent hover effect if paused
+    if (isPaused) return;
     if (hoverTimeout) {
       clearTimeout(hoverTimeout);
       setHoverTimeout(null);
     }
   };
 
-  // Track cursor position for image movement
   const handleMouseMove = (e) => {
-    if (isPaused) return; // Prevent hover effect if paused
+    if (isPaused) return;
     setCursorPosition({ x: e.clientX, y: e.clientY });
   };
 
-  // Calculate image position based on cursor
   const getImagePosition = (index) => {
     if (expandedBox === index && projectBoxRefs.current[index]) {
       const boxRect = projectBoxRefs.current[index].getBoundingClientRect();
@@ -119,31 +113,6 @@ const Projects = ({ isPaused = false }) => {
 
   return (
     <div className="projects-section" onMouseMove={handleMouseMove}>
-      {/* <div className="line-checks">  */}
-      {/* {[...Array(7)].map((_, index) => (
-        <div 
-          key={`h-${index}`} 
-          className="horizontal-line" 
-          style={{ 
-            top: `${index * 40}px`, // Increased spacing for gaps
-            width: `${300 - index * 30}px`, 
-            opacity: 1 - (index * 0.1)
-          }}
-        />
-      ))}
-
-{[...Array(5)].map((_, index) => (
-    <div 
-      key={`v-${index}`} 
-      className="vertical-line-check" // Different class name to avoid confusion with your existing vertical lines
-      style={{ 
-        left: `${index * 40}px`, // Every 40px
-        height: `${200 - index * 30}px`, 
-        opacity: 1 - (index * 0.1)
-      }}
-    />
-  ))} */}
-      {/* </div> */}
       <div className="vertical-lines">
         {[...Array(4)].map((_, index) => (
           <div key={index} className="vertical-line">
@@ -187,7 +156,7 @@ const Projects = ({ isPaused = false }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <LuArrowUpRight className="project-link-icon" size={20} />
+                    <LuArrowUpRight className="project-link-icon" />
                   </a>
                 </div>
               </div>
@@ -198,7 +167,6 @@ const Projects = ({ isPaused = false }) => {
         ))}
       </div>
 
-      {/* Project Name Display */}
       <div className="project-name-container">
         <div className="project-name-slider">
           {projectNames.map((name, index) => (

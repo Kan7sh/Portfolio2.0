@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [cursorSize, setCursorSize] = useState(40); // Default size
+  const [cursorSize, setCursorSize] = useState(40);
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const CustomCursor = () => {
         setCursorSize(80);
         setHovered(true);
       } else {
-        setCursorSize(40); 
+        setCursorSize(40);
         setHovered(false);
       }
     };

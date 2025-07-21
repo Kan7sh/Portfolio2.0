@@ -1,18 +1,16 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import ToggleButton from "./components/ToggleButton";
-import QRComponent from "./components/QRComponent";
 import Home from "./components/home";
 import About from "./components/About";
 import Projects from "./components/Project";
-import logoWhite from "./assets/logo_white.png"; // Adjust the path as needed
-import logoBlack from "./assets/logo_black.png"; // Adjust the path as needed
+import logoWhite from "./assets/logo_white.png";
+import logoBlack from "./assets/logo_black.png";
 export default function PhotoFrameNavigation() {
   const [activeSection, setActiveSection] = useState("Home");
   const [isFrameVisible, setIsFrameVisible] = useState(false);
   const [transitioning, setTransitioning] = useState(false);
   const [previousSection, setPreviousSection] = useState(null);
-  // Add this new state to control animations
   const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
@@ -34,7 +32,7 @@ export default function PhotoFrameNavigation() {
     document.addEventListener("mousemove", handleMouseMove);
 
     const interactiveElements = document.querySelectorAll(
-      "button, a, .frame-nav-item, .input-field, .submit-btn, .toggle-container"
+      " a, .frame-nav-item, .submit-btn, .toggle-container, .about-button"
     );
     interactiveElements.forEach((element) => {
       element.addEventListener("mouseenter", handleMouseEnter);
@@ -53,40 +51,34 @@ export default function PhotoFrameNavigation() {
   const qrColor = isFrameVisible ? "#000000" : "#ffffff";
 
   const handleAboutMeClick = () => {
-    // First make the frame visible if it's not already
     if (!isFrameVisible) {
       setIsFrameVisible(true);
-      // Pause animations when frame becomes visible
       setIsPaused(true);
     }
-    
-    // Then change to the About section
+
     setTimeout(() => {
       changeSection("About");
     }, 600);
   };
 
   const sectionContents = {
-    // Pass isPaused state to all components
     Home: <Home onAboutMeClick={handleAboutMeClick} isPaused={isPaused} />,
     About: <About isPaused={isPaused} />,
     Projects: <Projects isPaused={isPaused} />,
   };
 
   useEffect(() => {
-    // Handle scroll prevention when paused
     if (isPaused) {
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'auto';
-      document.documentElement.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
     }
 
     return () => {
-      // Cleanup - ensure scrolling is re-enabled when component unmounts
-      document.body.style.overflow = 'auto';
-      document.documentElement.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
     };
   }, [isPaused]);
 
@@ -94,25 +86,21 @@ export default function PhotoFrameNavigation() {
     if (activeSection !== newSection && !transitioning) {
       setTransitioning(true);
       setPreviousSection(activeSection);
-      
-      // Set active section immediately, but keep the transitioning state
+
       setActiveSection(newSection);
-      
+
       setTimeout(() => {
-        // End the transition after animation completes
         setTransitioning(false);
         setPreviousSection(null);
-        setIsFrameVisible(prev => !prev);
-        // Toggle the paused state when frame visibility changes
-        setIsPaused(prev => !prev);
-      }, 700); // Match this to your animation duration
+        setIsFrameVisible((prev) => !prev);
+        setIsPaused((prev) => !prev);
+      }, 700);
     }
   };
 
   const toggleFrame = () => {
     setTimeout(() => {
       setIsFrameVisible((prev) => !prev);
-      // Toggle the paused state when frame visibility changes
       setIsPaused((prev) => !prev);
     }, 300);
   };
@@ -121,23 +109,29 @@ export default function PhotoFrameNavigation() {
   const rightNavItems = ["LinkedIn", "GitHub", "Twitter"];
 
   return (
-    <div className={`window-container ${isPaused ? 'paused' : ''}`}>
+    <div className={`window-container ${isPaused ? "paused" : ""}`}>
       <div className="custom-cursor"></div>
       <div className="logo-container">
-        <img 
-          src={isFrameVisible ? logoBlack : logoWhite} 
-          alt="Logo" 
-          className="logo" 
+        <img
+          src={isFrameVisible ? logoBlack : logoWhite}
+          alt="Logo"
+          className="logo"
         />
       </div>
       <ToggleButton isToggled={isFrameVisible} onToggle={toggleFrame} />
-      <div className={`content-with-frame ${isFrameVisible ? "frame-visible" : ""}`}>
+      <div
+        className={`content-with-frame ${
+          isFrameVisible ? "frame-visible" : ""
+        }`}
+      >
         <div className="photo-frame">
           <div className="frame-nav left-frame">
             {leftNavItems.map((item, index) => (
               <div
                 key={index}
-                className={`frame-nav-item ${activeSection === item ? "active" : ""}`}
+                className={`frame-nav-item ${
+                  activeSection === item ? "active" : ""
+                }`}
                 onClick={() => changeSection(item)}
               >
                 {item.toUpperCase()}
@@ -165,26 +159,31 @@ export default function PhotoFrameNavigation() {
             ))}
           </div>
 
-          <div className="frame-border top-frame">
-          </div>
+          <div className="frame-border top-frame"></div>
 
           <div className="frame-border bottom-frame">
-          {/* <span className="frame-info">I build cool stuff… and occasionally break things.</span> */}
-
-            <span className="frame-info">Code so clean, even my mom would be proud</span>
+            <span className="frame-info">
+              Code so clean, even my mom would be proud
+            </span>
           </div>
         </div>
 
         <div className="main-window">
           <div className="content-container">
             {transitioning && previousSection && (
-              <div className="window-content exit-up">{sectionContents[previousSection]}</div>
+              <div className="window-content exit-up">
+                {sectionContents[previousSection]}
+              </div>
             )}
 
             {transitioning ? (
-              <div className="window-content enter-from-bottom">{sectionContents[activeSection]}</div>
+              <div className="window-content enter-from-bottom">
+                {sectionContents[activeSection]}
+              </div>
             ) : (
-              <div className="window-content">{sectionContents[activeSection]}</div>
+              <div className="window-content">
+                {sectionContents[activeSection]}
+              </div>
             )}
           </div>
         </div>
