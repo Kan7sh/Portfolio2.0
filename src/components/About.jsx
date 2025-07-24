@@ -106,8 +106,9 @@ const About = ({ isPaused = false }) => {
       duration: "Jan 2025 - Present",
       image: tcs,
       details: [
-        "Developing secure and high-performance APIs using Spring Boot and PostgreSQL for a banking project with SBI.",
-        "Tech Stack: Java, Spring Boot",
+        "Developed End to End REST APIs and Schdulers for Postpaid CRM Portal for Vodafone",
+        "Created CRM portal Screens using react and integrated APIs",
+        "Tech Stack:  Spring Boot, React",
       ],
     },
     {

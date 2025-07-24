@@ -738,7 +738,7 @@
 @media (max-width: 600px) {
   .rocketImg {
     width: 300px;
-    /* align-self: center; */
+    margin-right: 15px;
   }
 
   .name-container {
@@ -772,14 +772,14 @@
   }
 
   .about-button {
-    align-self: center;
-    bottom: 80px;
-    left: 25px;
+    position:absolute;
+    bottom: 90px;
+    right: auto;
   }
 
   .about-description-section {
     padding: 0px;
-  }
+  } 
 
   .company-name {
     width: 250px;

@@ -52,11 +52,10 @@
   color: white;
   font-family: "Anton";
   z-index: 5;
-  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
   transition: transform 0.1s ease-out;
   transform-style: preserve-3d;
 }
-
 .letter {
   font-size: 25px;
   font-weight: 700;
@@ -280,7 +279,7 @@
     font-size: 45px;
   }
 
-  .vertical-lines{
+  .vertical-lines {
     display: none;
   }
 
