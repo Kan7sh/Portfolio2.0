@@ -12,7 +12,7 @@ const Projects = ({ isPaused = false }) => {
   const [projectNames, setProjectNames] = useState([
     "The Podcast Space",
     "AI Alarm",
-    "IMAGE GENIUS",
+    "Image Genius",
   ]);
   const [currentProjectName, setCurrentProjectName] = useState("");
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
