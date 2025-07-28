@@ -4,35 +4,36 @@ import "./css/project.css";
 import redditCloneImage from "../assets/RedditClone.jpg";
 import aiAlarmImage from "../assets/AIAlarm.jpg";
 import imageGeniusImage from "../assets/ImageGenius.jpg";
+import TPS from "../assets/TPS.png";
 
 const Projects = ({ isPaused = false }) => {
   const [expandedBox, setExpandedBox] = useState(0);
   const [hoverTimeout, setHoverTimeout] = useState(null);
   const [projectNames, setProjectNames] = useState([
-    "AI ALARM",
-    "REDDIT CLONE",
+    "The Podcast Space",
+    "AI Alarm",
     "IMAGE GENIUS",
   ]);
   const [currentProjectName, setCurrentProjectName] = useState("");
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const projectBoxRefs = useRef([]);
-  const projectImageList = [aiAlarmImage, redditCloneImage, imageGeniusImage];
+  const projectImageList = [TPS, aiAlarmImage, imageGeniusImage];
   const projectLinks = [
+    "https://thepodcastspace.vercel.app/",
     "https://drive.google.com/file/d/1P44Njcd1oVqZPe7jpTaBGz8QCb2DGiN5/view",
-    "https://drive.google.com/file/d/16FAnHzKOOdfEwPhnuQNiTrDFwAEugEaL/view",
     "https://drive.google.com/file/d/1OZ7MHhJvsjT9qePjXSrxFSEjkdg8CvBK/view",
   ];
 
   const projectDescriptions = [
     [
+      "Built a real-time podcasting web app enabling users to create/join rooms and communicate over WebRTC and WebSocket, with local recordings for lossless audio quality",
+      "Implemented OAuth-based authentication and enabled seamless room collaboration and playback",
+      "Deployed the application on AWS EC2 using Docker for scalable, containerized infrastructure",
+    ],
+    [
       "User can Create a alarm with image of a specific object as input.",
       "Alarm will only goes off when user click same object's image making him to do physical activity.",
       "Basic alarm features - repeating days, changing ringtones.",
-    ],
-    [
-      "Create communities, search communities, add moderators,edit community profile.",
-      "Share posts, upvote-downvote posts, comment, award posts.",
-      "State management using RiverPod, theme toggling, responsive UI.",
     ],
     [
       "Generates logo using AI from OpenAI's API DALL-E.",

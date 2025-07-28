@@ -60,8 +60,8 @@ const About = ({ isPaused = false }) => {
   const contactMethods = [
     {
       icon: FaEnvelope,
-      href: "mailto:kanishchhabra.info@gmail.com",
-      text: "kanishchhabra.info@gmail.com",
+      href: "mailto:kanishchhabra.work@gmail.com",
+      text: "kanishchhabra.work@gmail.com",
     },
     {
       icon: FaLinkedin,
@@ -189,7 +189,7 @@ const About = ({ isPaused = false }) => {
           className={`about-button`}
           onClick={() =>
             window.open(
-              "https://drive.google.com/file/d/1fZJJWoA-q1HkVoUoMMK_3VhF4R2fMgNz/view",
+              "https://drive.google.com/file/d/1qyQLvX1AZIz3KHls_aciu4yvr3hXcT54/view?usp=sharing",
               "_blank"
             )
           }

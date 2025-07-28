@@ -145,7 +145,7 @@ const Home = ({ onAboutMeClick, isPaused }) => {
         style={{ position: "fixed", top: "25px", left: "25px", zIndex: 1000 }}
       >
         <QRCodeSVG
-          value={`mailto:kanishchhabra.info@gmail.com`}
+          value={`mailto:kanishchhabra.work@gmail.com`}
           size={70}
           fgColor="#ffffff"
           bgColor="transparent"
