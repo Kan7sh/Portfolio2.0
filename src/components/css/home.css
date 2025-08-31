@@ -6,23 +6,27 @@
 .home-content {
   background: linear-gradient(
     15deg,
-    #950505,
-    #9e0404,
-    #9c0505,
-    #cd5c07,
-    #ef9936,
-    #ed9734,
-    #ad6b1f,
-    #845219,
-    #623c12,
-    #32200b,
+    #9e0000,
+    #df0000,
+    #fa1100,
+    #fa4700,
+    #fa8900,
+    #fabb00,
+    #db8b30,
+    #ab681d,
+    #734510,
+    #3f2507,
+    #221404,
     #0f0f0f,
     #0f0f0f,
     #0f0f0f,
     #0f0f0f,
     #0f0f0f,
+
     #0f0f0f,
-    #ea9d44
+
+    #483600,
+    #fabb00
   );
   width: 100%;
   height: 100vh;
@@ -47,12 +51,11 @@
 }
 .three-d-text {
   transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg);
-  font-size: 120px;
+  font-size: 72px;
   font-weight: bold;
   color: white;
   font-family: "Anton";
   z-index: 5;
-  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
   transition: transform 0.1s ease-out;
   transform-style: preserve-3d;
 }
@@ -276,7 +279,7 @@
   }
 
   .three-d-text {
-    font-size: 45px;
+    font-size: 36px;
   }
 
   .vertical-lines {

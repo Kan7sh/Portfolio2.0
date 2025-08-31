@@ -174,8 +174,7 @@ const Home = ({ onAboutMeClick, isPaused }) => {
             transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
           }}
         >
-          Code Alchemist
-        </div>
+ FULL STACK Developer × Designer       </div>
         <div className="vertical-lines">
           {[...Array(4)].map((_, index) => (
             <div key={index} className="vertical-line">

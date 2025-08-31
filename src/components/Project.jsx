@@ -5,26 +5,33 @@ import redditCloneImage from "../assets/RedditClone.jpg";
 import aiAlarmImage from "../assets/AIAlarm.jpg";
 import imageGeniusImage from "../assets/ImageGenius.jpg";
 import TPS from "../assets/TPS.png";
+import codeCompass from "../assets/CodeCompass.png";
 
 const Projects = ({ isPaused = false }) => {
   const [expandedBox, setExpandedBox] = useState(0);
   const [hoverTimeout, setHoverTimeout] = useState(null);
   const [projectNames, setProjectNames] = useState([
+    "Code Compass",
     "The Podcast Space",
     "AI Alarm",
-    "Image Genius",
   ]);
   const [currentProjectName, setCurrentProjectName] = useState("");
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const projectBoxRefs = useRef([]);
-  const projectImageList = [TPS, aiAlarmImage, imageGeniusImage];
+  const projectImageList = [codeCompass, TPS, aiAlarmImage];
   const projectLinks = [
+    "https://codecompass.kanish.in",
     "https://thepodcastspace.vercel.app/",
     "https://drive.google.com/file/d/1P44Njcd1oVqZPe7jpTaBGz8QCb2DGiN5/view",
-    "https://drive.google.com/file/d/1OZ7MHhJvsjT9qePjXSrxFSEjkdg8CvBK/view",
   ];
 
   const projectDescriptions = [
+    [
+      "Connects with GitHub repositories and branches to automatically track and monitor new pull requests",
+      "Leverages Hugging Face AI models to deeply analyze code changes and generate intelligent, context-aware review comments",
+      "Delivers quick, consistent, and constructive feedback, reducing review delays and boosting overall code quality",
+    ],
+
     [
       "Built a real-time podcasting web app enabling users to create/join rooms and communicate over WebRTC and WebSocket, with local recordings for lossless audio quality",
       "Implemented OAuth-based authentication and enabled seamless room collaboration and playback",
@@ -34,11 +41,6 @@ const Projects = ({ isPaused = false }) => {
       "User can Create a alarm with image of a specific object as input.",
       "Alarm will only goes off when user click same object's image making him to do physical activity.",
       "Basic alarm features - repeating days, changing ringtones.",
-    ],
-    [
-      "Generates logo using AI from OpenAI's API DALL-E.",
-      "Convert Images to PDF. Perform CRUD operations on them.",
-      "Share Documents with others in common room using Firebase cloud storage.",
     ],
   ];
 
@@ -104,9 +106,9 @@ const Projects = ({ isPaused = false }) => {
     if (expandedBox === index && projectBoxRefs.current[index]) {
       const boxRect = projectBoxRefs.current[index].getBoundingClientRect();
       const offsetX =
-        (cursorPosition.x - boxRect.left - boxRect.width / 2) / 30;
+        (cursorPosition.x - boxRect.left - boxRect.width / 2) / 60;
       const offsetY =
-        (cursorPosition.y - boxRect.top - boxRect.height / 2) / 30;
+        (cursorPosition.y - boxRect.top - boxRect.height / 2) / 60;
       return { transform: `translate(${offsetX}px, ${offsetY}px)` };
     }
     return {};
@@ -182,6 +184,12 @@ const Projects = ({ isPaused = false }) => {
           ))}
         </div>
       </div>
+      <button
+        className={`projects-button`}
+        onClick={() => window.open("https://projects.kanish.in", "_blank")}
+      >
+        More projects
+      </button>
     </div>
   );
 };

@@ -8,11 +8,11 @@
   justify-content: center;
   background: linear-gradient(
     295deg,
-    #d02308,
-    #d8640a,
-    #e59d0e,
-    #e38f2f,
-    #b77528,
+    #fa1100,
+    #fa4700,
+    #fa8900,
+    #fabb00,
+    #db8b30,
     #9c6423,
     #644116,
     #3c280f,
@@ -411,12 +411,17 @@
   min-height: 120px;
   background: linear-gradient(
     270deg,
-    #a20606,
-    #d8640a,
-    #d08d09,
-    #a97408,
-    #775106,
-    #493203,
+    #fa1100,
+    #fa4700,
+    #fa8900,
+    #fabb00,
+    #db8b30,
+    #ab681d,
+    #734510,
+    #3f2507,
+    #221404,
+    #0f0f0f,
+    #0f0f0f,
     #0f0f0f,
     #0f0f0f,
     #0f0f0f,
@@ -656,8 +661,10 @@
   width: 100%;
   background: linear-gradient(
     0deg,
-    #d8640a,
-    #ea9d44,
+    #fa6c00,
+    #faab00,
+    #db8b30,
+    #0f0f0f,
     #0f0f0f,
     #0f0f0f,
     #0f0f0f,
@@ -772,14 +779,14 @@
   }
 
   .about-button {
-    position:absolute;
+    position: absolute;
     bottom: 90px;
     right: auto;
   }
 
   .about-description-section {
     padding: 0px;
-  } 
+  }
 
   .company-name {
     width: 250px;
