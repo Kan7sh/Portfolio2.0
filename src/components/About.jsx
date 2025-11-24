@@ -306,6 +306,7 @@ const About = ({ isPaused = false }) => {
             "Kafka",
             "Redis",
             "Kubernates",
+            "GenAI",
             "Flutter",
             "Dart",
             "Java",
@@ -331,6 +332,7 @@ const About = ({ isPaused = false }) => {
             "Kafka",
             "Redis",
             "Kubernates",
+            "GenAI",
           ].map((skill, index) => (
             <div key={index} className="skill-item">
               {skill}
