@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { LuExpand, LuArrowUpRight } from "react-icons/lu";
 import "./css/project.css";
-import redditCloneImage from "../assets/RedditClone.jpg";
-import aiAlarmImage from "../assets/AIAlarm.jpg";
-import imageGeniusImage from "../assets/ImageGenius.jpg";
 import TPS from "../assets/TPS.png";
 import codeCompass from "../assets/CodeCompass.png";
+import layerFlowImg from "../assets/layerflow.png";
 
 const Projects = ({ isPaused = false }) => {
   const [expandedBox, setExpandedBox] = useState(0);
@@ -18,29 +16,28 @@ const Projects = ({ isPaused = false }) => {
   const [currentProjectName, setCurrentProjectName] = useState("");
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const projectBoxRefs = useRef([]);
-  const projectImageList = [codeCompass, TPS, aiAlarmImage];
+  const projectImageList = [layerFlowImg, codeCompass, TPS];
   const projectLinks = [
+    "https://layerflow.kanish.in",
     "https://codecompass.kanish.in",
     "https://thepodcastspace.vercel.app/",
-    "https://drive.google.com/file/d/1P44Njcd1oVqZPe7jpTaBGz8QCb2DGiN5/view",
   ];
 
   const projectDescriptions = [
+    [
+      "Open-source, AI-powered editor with a modern, responsive UI built for fast, intuitive creative work",
+      "Full layer-based workspace to add, style, and manipulate text and image layers with precise controls and effects.",
+      "Integrated LangChain AI assistant that generates images, removes backgrounds, creates text layers, and automates complex or repetitive editing tasks.",
+    ],
     [
       "Connects with GitHub repositories and branches to automatically track and monitor new pull requests",
       "Leverages Hugging Face AI models to deeply analyze code changes and generate intelligent, context-aware review comments",
       "Delivers quick, consistent, and constructive feedback, reducing review delays and boosting overall code quality",
     ],
-
     [
       "Built a real-time podcasting web app enabling users to create/join rooms and communicate over WebRTC and WebSocket, with local recordings for lossless audio quality",
       "Implemented OAuth-based authentication and enabled seamless room collaboration and playback",
       "Deployed the application on AWS EC2 using Docker for scalable, containerized infrastructure",
-    ],
-    [
-      "User can Create a alarm with image of a specific object as input.",
-      "Alarm will only goes off when user click same object's image making him to do physical activity.",
-      "Basic alarm features - repeating days, changing ringtones.",
     ],
   ];
 
