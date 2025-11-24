@@ -188,7 +188,7 @@ const About = ({ isPaused = false }) => {
           className={`about-button`}
           onClick={() =>
             window.open(
-              "https://drive.google.com/file/d/1g9VeFu8fgwRU_6lWmn_LdTafXTSyTgKh/view?usp=sharing",
+              "https://drive.google.com/file/d/1l1tBbh1jNIlaTlYBEBy4ECA0krjm0Dkl/view?usp=sharing",
               "_blank"
             )
           }
