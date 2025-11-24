@@ -145,7 +145,7 @@ const Home = ({ onAboutMeClick, isPaused }) => {
         style={{ position: "fixed", top: "25px", left: "25px", zIndex: 1000 }}
       >
         <QRCodeSVG
-          value={`mailto:kanishchhabra.work@gmail.com`}
+          value={`mailto:kanishchhabra.info@gmail.com`}
           size={70}
           fgColor="#ffffff"
           bgColor="transparent"
@@ -174,7 +174,8 @@ const Home = ({ onAboutMeClick, isPaused }) => {
             transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
           }}
         >
- FULL STACK Developer × Designer       </div>
+          FULL STACK Developer × Designer{" "}
+        </div>
         <div className="vertical-lines">
           {[...Array(4)].map((_, index) => (
             <div key={index} className="vertical-line">

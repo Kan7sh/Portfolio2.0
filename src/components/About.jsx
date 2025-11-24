@@ -60,8 +60,8 @@ const About = ({ isPaused = false }) => {
   const contactMethods = [
     {
       icon: FaEnvelope,
-      href: "mailto:kanishchhabra.work@gmail.com",
-      text: "kanishchhabra.work@gmail.com",
+      href: "mailto:kanishchhabra.info@gmail.com",
+      text: "kanishchhabra.info@gmail.com",
     },
     {
       icon: FaLinkedin,
@@ -106,9 +106,9 @@ const About = ({ isPaused = false }) => {
       duration: "Jan 2025 - Present",
       image: tcs,
       details: [
-        "Developed End to End REST APIs and Schdulers for Postpaid CRM Portal for Vodafone",
-        "Created CRM portal Screens using react and integrated APIs",
-        "Tech Stack:  Spring Boot, React",
+        "Developed and maintained microservice-based backend services for Vodafone’s CRM Agent Portal, creating Spring Boot APIs that processed 20,000+ daily customer operations across modules like Customer Safe Custody, SIM activation/deactivation, and SIM Owner History",
+        "Built and enhanced multiple React-based frontend screens, improving workflow efficiency for 3000+ CRM agents through seamless UI–backend integration and optimized data handling.",
+        "Managed end-to-end deployments using Docker and Kubernetes, implemented Redis caching to reduce API latency by up to 40%, and used Kafka to reliably handle 50,000+ event messages per day across microservices.",
       ],
     },
     {
@@ -118,10 +118,9 @@ const About = ({ isPaused = false }) => {
       duration: "Jan 2024 - Jan 2025",
       image: lng,
       details: [
-        "Developed an end-to-end automated mandate payment system using Azure Functions, integrating Qlink APIs for South African banks, reducing manual processing by 40% and improving transaction reliability.",
+        "Designed and built a cloud-native Payment Mandate Microservice using Azure Functions (C#), Event Grid, and Qlink APIs for South African banks, streamlining mandate processing and reducing manual effort by 40%",
         "Led the migration of the Order module for the Steve Madden website from .NET 4.8 to .NET 8, integrating Shopify Callback APIs, improving data consistency, and reducing response time by 30%.",
-        "Optimized the UI and performance of the company’s internal employee rating platform using React, enhancing user experience and reducing page load time by 50%.",
-        "Tech Stack: .NET, C#, Azure.",
+        "Revamped the internal employee rating platform by redesigning the UI and implementing React with Zustand for state management , enhancing user experience and reducing page load times by 50%",
       ],
     },
     {
@@ -189,7 +188,7 @@ const About = ({ isPaused = false }) => {
           className={`about-button`}
           onClick={() =>
             window.open(
-              "https://drive.google.com/file/d/1qyQLvX1AZIz3KHls_aciu4yvr3hXcT54/view?usp=sharing",
+              "https://drive.google.com/file/d/1g9VeFu8fgwRU_6lWmn_LdTafXTSyTgKh/view?usp=sharing",
               "_blank"
             )
           }
@@ -304,6 +303,9 @@ const About = ({ isPaused = false }) => {
             "TypeScript",
             "HTML/CSS",
             "UI/UX",
+            "Kafka",
+            "Redis",
+            "Kubernates",
             "Flutter",
             "Dart",
             "Java",
@@ -326,6 +328,9 @@ const About = ({ isPaused = false }) => {
             "TypeScript",
             "HTML/CSS",
             "UI/UX",
+            "Kafka",
+            "Redis",
+            "Kubernates",
           ].map((skill, index) => (
             <div key={index} className="skill-item">
               {skill}
