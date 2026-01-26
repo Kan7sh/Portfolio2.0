@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./css/home.css";
-import logoWhite from "../assets/logo_white.png";
 import { GrBottomCorner, GrTopCorner } from "react-icons/gr";
 import { QRCodeSVG } from "qrcode.react";
 
@@ -176,13 +175,13 @@ const Home = ({ onAboutMeClick, isPaused }) => {
         >
           FULL STACK Developer × Designer{" "}
         </div>
-        <div className="vertical-lines">
+        {/* <div className="vertical-lines">
           {[...Array(4)].map((_, index) => (
             <div key={index} className="vertical-line">
               <div className={`pulse ${isPaused ? "paused" : ""}`}></div>
             </div>
           ))}
-        </div>
+        </div> */}
         <div className="about-me">
           As a software developer, I thrive on solving complex problems,
           crafting seamless user experiences, and transforming ideas into

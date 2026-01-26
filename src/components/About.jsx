@@ -196,13 +196,13 @@ const About = ({ isPaused = false }) => {
           Peek at my resume ?
         </button>
 
-        <div className="vertical-lines">
+        {/* <div className="vertical-lines">
           {[...Array(4)].map((_, index) => (
             <div key={index} className="vertical-line">
               <div className={`pulse ${isPaused ? "paused" : ""}`}></div>
             </div>
           ))}
-        </div>
+        </div> */}
 
         <div className={`scroll-down ${isPaused ? "paused" : ""}`}>
           <span>scroll down</span>

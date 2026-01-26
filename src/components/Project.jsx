@@ -113,13 +113,13 @@ const Projects = ({ isPaused = false }) => {
 
   return (
     <div className="projects-section" onMouseMove={handleMouseMove}>
-      <div className="vertical-lines">
+      {/* <div className="vertical-lines">
         {[...Array(4)].map((_, index) => (
           <div key={index} className="vertical-line">
             <div className={`pulse`}></div>
           </div>
         ))}
-      </div>
+      </div> */}
       <div className="section-title">PROJECTS</div>
 
       <div className="project-box-container">
