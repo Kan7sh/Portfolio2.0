@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "./css/about.css";
 import profilePicture from "../assets/profile_picture.jpg";
 import rocket from "../assets/rocket.png";
@@ -17,7 +18,7 @@ const About = ({ isPaused = false }) => {
   const intervalRef = useRef(null);
   const [showProfileImage, setShowProfileImage] = useState(false);
   const aboutRef = useRef(null);
-  const [showExperience, setShowExperience] = useState(false);
+  const [_, setShowExperience] = useState(false);
   const [hoveredExperience, setHoveredExperience] = useState(null);
 
   const experienceTitleRef = useRef(null);
@@ -188,8 +189,8 @@ const About = ({ isPaused = false }) => {
           className={`about-button`}
           onClick={() =>
             window.open(
-              "https://drive.google.com/file/d/1l1tBbh1jNIlaTlYBEBy4ECA0krjm0Dkl/view?usp=sharing",
-              "_blank"
+              "https://drive.google.com/file/d/1JOnzSnu0_XiWKEZtSjvlyiu_OufpuPUh/view?usp=sharing",
+              "_blank",
             )
           }
         >
@@ -233,7 +234,7 @@ const About = ({ isPaused = false }) => {
         </div>
 
         <div className="experience-timeline">
-          {experiences.map((exp, index) => (
+          {experiences.map((exp) => (
             <div
               key={exp.id}
               className="experience-row-container"

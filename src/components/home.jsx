@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import "./css/home.css";
 import { GrBottomCorner, GrTopCorner } from "react-icons/gr";
 import { QRCodeSVG } from "qrcode.react";
+import rocket from "../assets/satelite.png";
 
 const Home = ({ onAboutMeClick, isPaused }) => {
   const fonts = [
@@ -22,7 +24,7 @@ const Home = ({ onAboutMeClick, isPaused }) => {
   const word = "Kanish Chhabra";
 
   const [letterFonts, setLetterFonts] = useState(
-    Array(word.length).fill(fonts[0])
+    Array(word.length).fill(fonts[0]),
   );
 
   const getRandomFont = () => {
@@ -115,7 +117,7 @@ const Home = ({ onAboutMeClick, isPaused }) => {
     if (isTyping) {
       timer = setTimeout(() => {
         setDisplayText((prev) =>
-          textLines[currentLineIndex].slice(0, prev.length + 1)
+          textLines[currentLineIndex].slice(0, prev.length + 1),
         );
         if (displayText.length === textLines[currentLineIndex].length) {
           setIsTyping(false);
@@ -151,54 +153,50 @@ const Home = ({ onAboutMeClick, isPaused }) => {
         />
       </div>
       <div className="center-content">
-        <div className="name-text">
-          {word.split("").map((letter, index) => (
-            <span
-              key={index}
-              className="letter"
+        <div className="satelliteWrapper">
+          <img src={rocket} alt="Satellite" className="satelliteImg" />
+        </div>
+        <div className="center-text">
+          <div className="name-text">
+            {word.split("").map((letter, index) => (
+              <span
+                key={index}
+                className="letter"
+                style={{
+                  fontFamily: letterFonts[index],
+                  margin: "0 4px",
+                  transition: "font-family 0.3s ease-in-out",
+                }}
+              >
+                {letter}
+              </span>
+            ))}
+            <div
+              className="three-d-text"
               style={{
-                fontFamily: letterFonts[index],
-                margin: "0 4px",
-                transition: "font-family 0.3s ease-in-out",
+                transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
               }}
             >
-              {letter}
-            </span>
-          ))}
-        </div>
-
-        <div
-          className="three-d-text"
-          style={{
-            transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
-          }}
-        >
-          FULL STACK Developer × Designer{" "}
-        </div>
-        {/* <div className="vertical-lines">
-          {[...Array(4)].map((_, index) => (
-            <div key={index} className="vertical-line">
-              <div className={`pulse ${isPaused ? "paused" : ""}`}></div>
+              Full Stack Developer × AI Engineer{" "}
             </div>
-          ))}
-        </div> */}
-        <div className="about-me">
-          As a software developer, I thrive on solving complex problems,
-          crafting seamless user experiences, and transforming ideas into
-          reality through clean, efficient code. Every line I write is a fusion
-          of logic, design, and boundless creativity.
+          </div>
+          <div className="about-me">
+            As a software developer, I thrive on solving complex problems,
+            crafting seamless user experiences, and transforming ideas into
+            reality through clean, efficient code. Every line I write is a
+            fusion of logic, design, and boundless creativity.
+          </div>
+          <button
+            className={`boxy-button ${isPaused ? "paused" : ""}`}
+            onMouseEnter={handleButtonHover}
+            onMouseLeave={handleButtonLeave}
+            onClick={handleButtonClick}
+          >
+            <GrTopCorner className="arrow-icon top-left" />
+            <GrBottomCorner className="arrow-icon bottom-right" />
+            {buttonText}
+          </button>
         </div>
-
-        <button
-          className={`boxy-button ${isPaused ? "paused" : ""}`}
-          onMouseEnter={handleButtonHover}
-          onMouseLeave={handleButtonLeave}
-          onClick={handleButtonClick}
-        >
-          <GrTopCorner className="arrow-icon top-left" />
-          <GrBottomCorner className="arrow-icon bottom-right" />
-          {buttonText}
-        </button>
       </div>
 
       <div className="text-container">
